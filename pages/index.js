@@ -6,7 +6,8 @@ export default function Home() {
   return (
 
    <div>
-    master branch 
+    I am the master. Who are you? I am now trying to copy master branch and merge with tauhid branch
+    
    </div>
 
   )
