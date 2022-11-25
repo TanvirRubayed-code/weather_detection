@@ -6,8 +6,7 @@ export default function Home() {
   return (
 
    <div>
-    I am the master. Who are you?
-    
+    master branch 
    </div>
 
   )
