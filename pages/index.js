@@ -6,7 +6,8 @@ export default function Home() {
   return (
 
    <div>
-    hello I am Tanvir rubayed tauhid 
+    I am the master. Who are you?
+    
    </div>
 
   )
