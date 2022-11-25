@@ -4,8 +4,10 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
+
    <div>
-    hello I'm Tanvir rubayed tauhid 
+    hello I am Tanvir rubayed tauhid 
    </div>
+
   )
 }
