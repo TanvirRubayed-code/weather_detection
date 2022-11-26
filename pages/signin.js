@@ -6,7 +6,7 @@ export default Signin;
 function Signin() {
   return (
     <>
-
+            <div id='sign-up-page'>
       <main className={cx(styles["form-signin"],"text-center","mt-5")}>
         <form>
           <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
@@ -28,7 +28,7 @@ function Signin() {
           <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>
       </main>
-
+      </div>
     </>
   )
 }
