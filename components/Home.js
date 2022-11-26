@@ -9,7 +9,7 @@ import styles from "../styles/Home.module.css"
 function Home() {
     return <div>
         <Banner></Banner>
-        <Products></Products>
+        {/* <Products></Products> */}
         <BestProducts></BestProducts>
         <Footer></Footer>
     </div>

@@ -12,7 +12,7 @@ const Products = () => {
         }}>
             <div className={styles.ProductAndService}>
                 <div className={styles.productTitle}>
-                    <h1>Products and Services</h1>
+                    <h1>Weather Information</h1>
                     <h6> A trusted online shop</h6>
                 </div>
                 <div className={styles.cardContainer}>
