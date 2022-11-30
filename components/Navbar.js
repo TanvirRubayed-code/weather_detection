@@ -16,6 +16,7 @@ const Navigation = () => {
             <div className={styles.Navbar}>
                 <ul>
                 <li><Link href="/">Home</Link></li>
+                <li><Link href="/blog">Blogs</Link></li>
                     <li className={styles.shopNav}>Shop
                         <ul className={styles.productType}>
                             <li className={styles.med}>Medicine
