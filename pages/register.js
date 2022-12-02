@@ -47,11 +47,15 @@ return <div class="login-form">
             </label>
           </div>
           </div> */}
-
-
+        
+        <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+  <h6>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</h6>   
 
   </div>
   <div class="action">
+  
 	<button>Register</button>
 	
   </div>
