@@ -3,7 +3,7 @@ import styles from '../styles/bestproductcard.module.css'
 
 const BestProductCard = (props) => {
     return (
-        <div>
+        <>
 
             <div className={styles.bestCard}>
                 <img src={props.image}></img>
@@ -12,7 +12,7 @@ const BestProductCard = (props) => {
                 {/* <button className={styles.btnStyle}>visit</button> */}
             </div>
 
-        </div>
+        </>
 
     );
 };

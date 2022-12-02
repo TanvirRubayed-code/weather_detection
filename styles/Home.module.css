@@ -33,6 +33,9 @@
   margin-left: 20px;
 }
 
+.Navbar>ul>li:hover {
+  text-decoration: underline;
+}
 
 .shopNav {
   position: relative;
@@ -130,7 +133,59 @@
   align-items: flex-start;
   margin-bottom: 50px;
   user-select: none;
+
+  font-family: 'Times New Roman', Times, serif;
 }
+
+.text h5 {
+  font-family: monospace;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploader {
+  margin: 0 auto;
+  padding: 80px !important;
+  margin-top: 100px;
+}
+
+.uploader_frame p {
+  color: #0070f3;
+  text-align: center;
+}
+
+.uploader_frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 150px;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
 
 .text h1 {
   font-size: 2.4em;
@@ -150,32 +205,41 @@
 
 .btnStyle,
 .loginbtn {
-  padding: 9px 12px;
+
   border: 0;
   color: black;
   font-size: 18px;
   border-radius: 7px;
   background-color: #ffffff;
-  transition: background-color .1s ease-in;
+  transition: background-color .3s ease-in;
 }
 
 .btnStyle {
   font-size: 18px;
   padding: 8px 25px;
+
+  margin-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid transparent;
 }
 
 .btnStyle:hover {
-  background-color: skyblue;
-  /* border: 2px solid rgb(255, 255, 255); */
+  background-color: rgb(3, 21, 61);
+  border: 1px solid rgb(0, 0, 0);
   color: white;
 }
 
 .loginbtn {
   margin-left: 20px;
+  padding: 4px 12px;
+  border: 1px solid transparent;
 }
 
 .loginbtn:hover {
   cursor: pointer;
+  background-color: rgb(3, 21, 61);
+  border: 1px solid rgb(0, 0, 0);
+  color: white;
 }
 
 .footerMain {
@@ -265,4 +329,9 @@
 .playStoreText h3 {
   margin-top: 0;
   user-select: none;
+
+}
+
+.PageTitle {
+  font-family: monospace;
 }

@@ -3,6 +3,7 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
+     font-family:monospace;
  }
 
  .besttitle h1 {
@@ -31,12 +32,15 @@
      border-radius: 10px;
      margin: 15px 15px;
      border: 1px solid rgba(204, 204, 204, 0);
-     transition: border .2s ease-in;
+     transition: border .1s ease-in;
+     overflow: hidden;
+
  }
 
  .bestCard:hover {
      cursor: pointer;
      border: 1px solid #2DAAE9;
+     box-shadow: 5px 5px 15px 5px rgba(204, 204, 204, 0.7);
 
  }
 
@@ -44,6 +48,16 @@
  .bestCard h2,
  .bestCard button {
      margin: 5px;
+ }
+
+ .bestCard h2{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+ }
+ .bestCard p{
+    font-size:16px;
+    font-family: 'Poppins';
+    color: black;
+    padding: 2px 4px;
  }
 
  .bestCard img {
@@ -59,8 +73,7 @@
  }
 
 
-
- .bestCard button {
+.bestCard button {
      margin: 15px auto;
  }
 
