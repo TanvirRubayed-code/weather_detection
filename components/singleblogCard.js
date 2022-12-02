@@ -1,0 +1,30 @@
+import styles from "../styles/Blog.module.css";
+import Image from "next/image";
+import imagedemo from "../image/autumn.jpg";
+
+function singleBlogCard() {
+  return (
+    <div className={styles.first_card}>
+      <Image
+        //   loader={myLoader}
+        className={styles.card_image}
+        src={imagedemo}
+        alt="Picture of the author"
+      />
+      <div className={styles.textbox}>
+        <div className={styles.category_date}>
+          <small>Food</small>
+          <small className={styles.hypen}>-</small>
+          <small>NOV 23, 2022</small>
+        </div>
+        <h2>Aenean mattis tortor ac sapien congue molestie</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+          possimus labore impedit eveniet sequi esse?
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default singleBlogCard;

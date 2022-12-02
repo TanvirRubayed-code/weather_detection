@@ -4,11 +4,7 @@ import playStore from "../image/Vector.png";
 import appleLogo from "../image/applelogo.png";
 const Footer = () => {
   return (
-    <div
-      style={{
-        marginTop: "50px",
-      }}
-    >
+    <div>
       <div className={styles.footerMain}>
         <div className={styles.footerFirst}>
           <div className={styles.footerDownAndLicense}>
