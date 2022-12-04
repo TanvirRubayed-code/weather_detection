@@ -137,14 +137,14 @@
 
 
 .text h5 {
-  font-family:  'Rubik', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   margin: 0;
   margin-bottom: 15px;
 }
 
 .text h1 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.4em;
   margin: 0;
   margin-bottom: 20px;
@@ -223,7 +223,7 @@
 .btnStyle,
 .loginbtn {
   font-weight: 700;
-  font-family:  'Rubik', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   color: rgb(9, 116, 187);
   font-size: 15px;
@@ -235,7 +235,7 @@
 .btnStyle {
   padding: 8px 25px;
   margin-top: 20px;
-  font-family:  'Rubik', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid transparent;
 }
 
@@ -349,5 +349,5 @@
 }
 
 .PageTitle {
-  font-family:  'Rubik', sans-serif
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
