@@ -1,50 +1,63 @@
-import React from 'react';
-import styles from '../styles/Home.module.css'
-import logo from '../image/cloudy.png'
-import Link from 'next/link';
+import React from "react";
+import styles from "../styles/Home.module.css";
+import logo from "../image/cloudy2.png";
+import Link from "next/link";
+
 const Navigation = () => {
-    return (
-        <div className={styles.NavLogo}>
-            <div className={styles.logoTitle}>
-                <div className={styles.logo}>
-                    <img src={logo.src}></img>
-                </div>
-                <div className={styles.PageTitle}>
-                    <h2><Link href="/">Weather App</Link></h2>
-                </div>
-            </div>
-            <div className={styles.Navbar}>
-                <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/blog">Blogs</Link></li>
-                    <li className={styles.shopNav}>Shop
-                        <ul className={styles.productType}>
-                            <li className={styles.med}>Medicine
-                                <ul className={styles.medOptions}>
-                                    <li>Antibiotics</li>
-                                    <li>Antiparasitics</li>
-                                    <li>Antifungals</li>
-                                    <li>Steroids</li>
-                                    <li> Pain Relievers</li>
-                                </ul>
-                            </li>
-                            <li className={styles.food}>Food
-                                <ul className={styles.foodOptions}>
-                                    <li>Kibble</li>
-                                    <li>Canned</li>
-                                    <li>Semi-Moist</li>
-                                    <li>Home Cooked</li>
-                                    <li>Raw</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><Link href="/classify">Classify</Link></li>
-                    <button className={styles.loginbtn}>Log In</button>
-                </ul>
-            </div>
+  return (
+    <div className={styles.NavLogo}>
+      <div className={styles.logoTitle}>
+        <div className={styles.logo}>
+          <img src={logo.src}></img>
         </div>
-    );
+        <div className={styles.PageTitle}>
+          <h2>
+            <Link href="/">Weather App</Link>
+          </h2>
+        </div>
+      </div>
+      <div className={styles.Navbar}>
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/blog">Blogs</Link>
+          </li>
+          <li className={styles.shopNav}>
+            Shop
+            <ul className={styles.productType}>
+              <li className={styles.med}>
+                Weather Info
+                <ul className={styles.medOptions}>
+                  <li>Daily </li>
+                  <li>Weekly </li>
+                  <li>Monthly</li>
+                </ul>
+              </li>
+              <li className={styles.food}>
+                Seasonal Info
+                <ul className={styles.foodOptions}>
+                  <li>Summer</li>
+                  <li>Rainy</li>
+                  <li>Autumn</li>
+                  <li>Late Autumn</li>
+                  <li>Winter</li>
+                  <li>Spring</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link href="/classify">Classify</Link>
+          </li>
+          <button className={styles.loginbtn}>
+            <Link href="/login">Log In</Link>
+          </button>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Navigation;

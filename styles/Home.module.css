@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   color: white;
-  background-color: #056e97;
+  background-color: #0175a3;
   justify-content: space-between;
 }
 
@@ -32,6 +32,7 @@
   padding: 9px 15px;
   margin-left: 20px;
 }
+
 .Navbar>ul>li:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -131,13 +132,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-bottom: 50px;
   user-select: none;
-  font-family: 'Times New Roman', Times, serif;
 }
-.text h5{
-  font-family: monospace;
+
+
+.text h5 {
+  font-family:  'Rubik', sans-serif;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 15px;
 }
+
+.text h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2.4em;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+
+
+
+/* ---------------------------------------------------footer----------------------------------------------------------------------- */
 
 .footer {
   display: flex;
@@ -147,21 +169,25 @@
   justify-content: center;
   align-items: center;
 }
-.uploader{
+
+.uploader {
   margin: 0 auto;
   padding: 80px !important;
   margin-top: 100px;
 }
-.uploader_frame p{
+
+.uploader_frame p {
   color: #0070f3;
   text-align: center;
 }
-.uploader_frame{
+
+.uploader_frame {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 150px;
 }
+
 .footer a {
   display: flex;
   justify-content: center;
@@ -180,10 +206,8 @@
   text-decoration: underline;
 }
 
-.text h1 {
-  font-size: 2.4em;
-  margin: 0;
-}
+
+
 
 .dogImage {
 
@@ -198,25 +222,26 @@
 
 .btnStyle,
 .loginbtn {
+  font-weight: 700;
+  font-family:  'Rubik', sans-serif;
   border: 0;
-  color: black;
-  font-size: 18px;
+  color: rgb(9, 116, 187);
+  font-size: 15px;
   border-radius: 7px;
   background-color: #ffffff;
   transition: background-color .3s ease-in;
 }
 
 .btnStyle {
-  font-size: 18px;
   padding: 8px 25px;
   margin-top: 20px;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:  'Rubik', sans-serif;
   border: 1px solid transparent;
 }
 
 .btnStyle:hover {
-  background-color:tomato;
-  border: 1px solid white;
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
   color: white;
 }
 
@@ -228,8 +253,8 @@
 
 .loginbtn:hover {
   cursor: pointer;
-  background-color: tomato;
-  border: 1px solid white;
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
   color: white;
 }
 
@@ -320,7 +345,9 @@
 .playStoreText h3 {
   margin-top: 0;
   user-select: none;
+
 }
-.PageTitle{
-  font-family: monospace;
+
+.PageTitle {
+  font-family:  'Rubik', sans-serif
 }
