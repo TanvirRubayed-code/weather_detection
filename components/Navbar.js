@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/Home.module.css'
-import logo from '../image/cloudy.png'
+import logo from '../image/cloudy2.png'
 import Link from 'next/link';
 
 const Navigation = () => {

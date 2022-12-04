@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../styles/bestproductcard.module.css'
+import styles from '../styles/HomeSeasonCard.module.css'
 
-const BestProductCard = (props) => {
+const HomeSeasonCard = (props) => {
     return (
         <>
 
@@ -9,7 +9,6 @@ const BestProductCard = (props) => {
                 <img src={props.image}></img>
                 <h2>{props.title}</h2>
                 <p>{props.paragraph}</p>
-                {/* <button className={styles.btnStyle}>visit</button> */}
             </div>
 
         </>
@@ -17,4 +16,4 @@ const BestProductCard = (props) => {
     );
 };
 
-export default BestProductCard;
+export default HomeSeasonCard;

@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   color: white;
-  background-color: #056e97;
+  background-color: #0175a3;
   justify-content: space-between;
 }
 
@@ -131,15 +131,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-bottom: 50px;
   user-select: none;
-
-  font-family: 'Times New Roman', Times, serif;
 }
+
 
 .text h5 {
-  font-family: monospace;
+  font-family:  'Rubik', sans-serif;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 15px;
 }
+
+.text h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2.4em;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+
+
+
+/* ---------------------------------------------------footer----------------------------------------------------------------------- */
 
 .footer {
   display: flex;
@@ -187,10 +206,7 @@
 }
 
 
-.text h1 {
-  font-size: 2.4em;
-  margin: 0;
-}
+
 
 .dogImage {
 
@@ -205,27 +221,26 @@
 
 .btnStyle,
 .loginbtn {
-
+  font-weight: 700;
+  font-family:  'Rubik', sans-serif;
   border: 0;
-  color: black;
-  font-size: 18px;
+  color: rgb(9, 116, 187);
+  font-size: 15px;
   border-radius: 7px;
   background-color: #ffffff;
   transition: background-color .3s ease-in;
 }
 
 .btnStyle {
-  font-size: 18px;
   padding: 8px 25px;
-
   margin-top: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  'Rubik', sans-serif;
   border: 1px solid transparent;
 }
 
 .btnStyle:hover {
-  background-color: rgb(3, 21, 61);
-  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
   color: white;
 }
 
@@ -237,8 +252,8 @@
 
 .loginbtn:hover {
   cursor: pointer;
-  background-color: rgb(3, 21, 61);
-  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
   color: white;
 }
 
@@ -333,5 +348,5 @@
 }
 
 .PageTitle {
-  font-family: monospace;
+  font-family:  'Rubik', sans-serif
 }
