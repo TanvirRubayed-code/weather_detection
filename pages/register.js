@@ -13,6 +13,11 @@ function Register(){
               <div className={styles.input_field}>
                   <input type="email" placeholder="username or e-mail" autocomplete="nope" />
               </div>
+
+              <div className={styles.input_field}>
+                  <input type="email" placeholder="enter your e-mail" autocomplete="nope" />
+              </div>
+
               <div className={styles.input_field}>
                   <input type="password" placeholder="password" autocomplete="new-password" />
               </div>
@@ -22,7 +27,7 @@ function Register(){
               </div>
 
               <div class={styles.container_signin}>
-                 <h5>Already have an account? <a href="#">Sign in</a>.</h5>
+                 <h5>Already have an account? <a href="#">Log in</a>.</h5>
               </div>
               
 
