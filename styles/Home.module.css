@@ -113,16 +113,18 @@
 }
 
 .banner {
-  display: flex;
-  justify-content: space-between;
+
   /* background-color: #264653; */
   background-image: url("../image/back1.jpg");
   background-size: cover;
   padding: 0;
   margin: 0;
   color: white;
-  min-height: 70vh;
-
+}
+.background_wrapper{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,0.1);
 }
 
 .text {
@@ -350,4 +352,35 @@
 
 .PageTitle {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.current_weather {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0 100px 0;
+  margin-right: 120px;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.6);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+  border-radius: 5px;
+}
+.temperature {
+  font-size: 80px;
+  margin: 0;
+  padding: 0;
+}
+.current_weather small {
+  font-size: 12px;
+}
+.current_weather_image {
+  height: 100px;
+  width: 100px;
+}
+.image_text_current {
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
 }

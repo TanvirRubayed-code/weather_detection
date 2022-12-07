@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import logo from "../image/cloudy2.png";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navigation = () => {
   return (
@@ -25,7 +26,7 @@ const Navigation = () => {
             <Link href="/blog">Blogs</Link>
           </li>
           <li className={styles.shopNav}>
-            Shop
+            Weather
             <ul className={styles.productType}>
               <li className={styles.med}>
                 Weather Info

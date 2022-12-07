@@ -192,3 +192,19 @@
   }
   
   .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .floating_button {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  }
+  .floating_button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+
+  }

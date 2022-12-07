@@ -1,14 +1,13 @@
 import styles from "../styles/Blog.module.css";
 import Image from "next/image";
-import imagedemo from "../image/autumn.jpg";
 
-function singleBlogCard() {
+function singleBlogCard(props) {
   return (
     <div className={styles.first_card}>
       <Image
         //   loader={myLoader}
         className={styles.card_image}
-        src={imagedemo}
+        src={props.image}
         alt="Picture of the author"
       />
       <div className={styles.textbox}>
