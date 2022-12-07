@@ -78,6 +78,9 @@
     -webkit-box-direction: normal;
     flex-direction: row;
   }
+  .action button {
+    color: white !important;
+  }
   
   .register_form .action button {
     width: 100%;

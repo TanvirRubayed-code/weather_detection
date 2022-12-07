@@ -26,10 +26,14 @@ function Login() {
             </a>
           </div>
           <div className={styles.action}>
-            <Link href="/signup">
+            <Link className={styles.action_button} href="/signup">
               <button>Register</button>
             </Link>
-            <button>Sign in</button>
+
+            <Link className={styles.action_button} href="#">
+              <button className={styles.login_button}>Sign in</button>
+            </Link>
+
             <Link href="/login"></Link>
           </div>
         </form>
