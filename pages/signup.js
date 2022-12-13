@@ -4,38 +4,72 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 
 function Register() {
+
+  const hangleSignUpSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+      confirm_password: event.target.confirm_password.value
+    };
+
+    fetch("http://localhost/server/register.php", {
+      // URL
+      body: JSON.stringify(data), // data you send.
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "no-cors", // no-cors, cors, *same-origin
+      redirect: "follow", // *manual, follow, error
+      referrer: "no-referrer", // *client, no-referrer
+    })
+    // .then(res => res.json())
+    // .then(data => userLogin(data))
+
+
+
+
+
+  };
+
   return (
     <>
       <Navbar></Navbar>
       <div className={styles.register_form}>
-        <form>
+        <form onSubmit={hangleSignUpSubmit}>
           <h1>Register</h1>
           <div className={styles.content}>
             <div className={styles.input_field}>
-              <input type="email" placeholder="Username" autocomplete="nope" />
+              <input id='username' placeholder="Username" />
             </div>
 
             <div className={styles.input_field}>
-              <input type="email" placeholder="E-mail" autocomplete="nope" />
+              <input id="email" type="email" placeholder="E-mail" />
             </div>
 
             <div className={styles.input_field}>
               <input
+                id="password"
                 type="password"
                 placeholder="Password"
-                autocomplete="new-password"
+
               />
             </div>
 
             <div className={styles.input_field}>
               <input
+                id="confirm_password"
                 type="password"
                 placeholder="Confirm password"
-                autocomplete="new-password"
+
               />
             </div>
 
-            <div class={styles.container_signin}>
+            <div className={styles.container_signin}>
               <h5>
                 Already have an account?{" "}
                 <Link className={styles.login_text} href="/login">
@@ -45,7 +79,7 @@ function Register() {
               </h5>
             </div>
 
-            <div class={styles.legacy}>
+            <div className={styles.legacy}>
               <p>
                 {" "}
                 <input type="checkbox"></input> By creating an account you agree
@@ -54,7 +88,7 @@ function Register() {
             </div>
           </div>
           <div className={styles.action}>
-            <button>Register</button>
+            <button type="submit">Register</button>
           </div>
         </form>
       </div>
