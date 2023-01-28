@@ -78,12 +78,12 @@ export default function App() {
         onDragLeave={(e) => handleDragLeave(e)}
         onDrop={(e) => handleDrop(e)}
 
-        className="flex justify-center items-center my-40">
+        className="flex justify-center items-center py-40 bg-gray-200">
 
-        <div className="flex w-1/2 p-6 bg-white border border-gray-200 rounded-2xl shadow-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="flex w-1/2 p-6 bg-white border border-gray-200 rounded-2xl shadow-xl dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
           <div className="w-1/2 pr-2">
-            <label class="flex flex-col items-center justify-center w-full h-80 border-2 border-blue-500 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <label class="flex flex-col items-center justify-center w-full h-80 border-2 border-blue-500 border-dashed transition-all rounded-lg cursor-pointer bg-gray-50 hover:border-solid dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
               <div class="flex flex-col items-center justify-center pt-5 pb-6">
                 <TbUpload size={60} color="blue"></TbUpload>
                 <p class="font-semibold text-3xl text-center">Drag and Drop files to upload</p>
@@ -91,7 +91,7 @@ export default function App() {
 
                 <div className=" text-sm text-gray-400 mt-6">Supported files: JPG, JPEG, PNG</div>
               </div>
-              <input className=" hidden" onChange={handleChange2} id="dropzone-file" type="file" />
+              <input className=" hidden" accept=".jpg, .png, .jpeg" onChange={handleChange2} id="dropzone-file" type="file" />
 
 
 

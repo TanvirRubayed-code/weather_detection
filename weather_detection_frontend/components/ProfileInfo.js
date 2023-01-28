@@ -15,8 +15,8 @@ function ProfileInfo() {
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
     return (
-        <div className="px-36 py-12 w-full">
-            <div className="flex rounded shadow-xl bg-gray-100 p-10">
+        <div className="px-36 bg-gray-200 py-12 w-full">
+            <div className="flex rounded-lg shadow-xl bg-white p-10">
 
                 <div className="w-1/3">
 
@@ -147,7 +147,7 @@ function ProfileInfo() {
                             </div>
                             <div className="ml-20">
                                 <Link href="/user/edit">
-                                    <FaEdit size={22} color="blue" className="hover:cursor-pointer"></FaEdit>
+                                    <div className="flex bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded">Edit profile <FaEdit size={22} color="black" className="ml-3"></FaEdit></div>
                                 </Link>
                             </div>
                         </div>

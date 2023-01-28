@@ -38,8 +38,7 @@ const Navigation = () => {
 
             {
               loginState ? <div class="flex md:order-2">
-                <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-gray-700 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="Bordered avatar"></img>
-
+                <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-yellow-400 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="Bordered avatar"></img>
 
                 {
                   userIconClick ?

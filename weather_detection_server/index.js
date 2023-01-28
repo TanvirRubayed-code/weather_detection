@@ -19,11 +19,23 @@ async function server() {
         const weatherCollection = database.collection("weather")
         const userCollection = database.collection("users")
 
+
+        // --------------api to fetch all the user list and check username in frontend-------------
+
         app.get('/users', async (req, res) => {
             const result = await userCollection.find({}).toArray();
-            console.log(result)
             res.json(result);
         })
+
+        // -------------------- user sign up data send to database -------------------
+
+        app.post('/users', async (req, res) => {
+            const finalData = req.body;
+            const result = await userCollection.insertOne(finalData);
+            res.json(result)
+        })
+
+
         app.get('/users/:userName', async (req, res) => {
             const userName = req.params.userName;
             const filter = { userName }
@@ -32,15 +44,11 @@ async function server() {
         })
         app.get('/user_login/:userName', async (req, res) => {
             const userName = req.params.userName;
-            const filter = { userName : userName }
+            const filter = { userName: userName }
             const result = await userCollection.findOne(filter);
             res.json(result)
         })
-        app.post('/users', async (req, res) => {
-            const finalData = req.body;
-            const result = await userCollection.insertOne(finalData);
-            res.json(result)
-        })
+
         app.get('/weather', async (req, res) => {
             //const filter = {"class": {$lte: 2}}
             const result = await userCollection.find({}).toArray();

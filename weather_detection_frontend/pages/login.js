@@ -43,7 +43,7 @@ const Login = () => {
           setNoUser(false);
           if (res.data.password == login_info.password) {
             alert("Logged in successfully")
-            router.push("./")
+            // router.push("./")
           }
           else {
             alert("Password doesn't match")

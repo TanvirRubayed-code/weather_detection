@@ -13,6 +13,11 @@
 .main h1 {
     font-size: 35px;
 }
+.image_height{
+    height: 25rem;
+    border-radius: 0.25rem;
+}
+
 .profile_sec {
     display: flex;
     height: 35px;

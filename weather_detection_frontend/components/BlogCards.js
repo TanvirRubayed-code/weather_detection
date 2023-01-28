@@ -16,17 +16,19 @@ import { FaEdit, FiEdit } from 'react-icons/fa'
 
 function BlogCards() {
   return (
-    <div className={styles.main_back}>
+    <div className="bg-gray-200">
       <div className={styles.blog_text_des}>
         <h3>Blog</h3>
         <p>HOME / BLOG</p>
       </div>
-      <div className="fixed p-3 rounded bg-navbar bottom-6 right-6 ">
-        <Link href="/blog/post">
-          <BiEdit size={30} color="#ffffff"></BiEdit>
-        </Link>
 
-      </div>
+      <Link href="/blog/post">
+        <div className="fixed p-3 shadow-xl rounded bg-navbar border-2 transition border-gray-600 bottom-10 right-7 hover:bg-blue-400">
+          <BiEdit size={30} color="#ffffff"></BiEdit>
+        </div>
+      </Link>
+
+
 
       <div className={styles.blog_container}>
         <div className={styles.blog_side_sec}>
@@ -41,17 +43,19 @@ function BlogCards() {
           <SingleBlogCard image={summer} />
         </div>
       </div>
-      <div className={styles.pagination}>
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a className={styles.active} href="#">
-          2
-        </a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
+      <div className="pb-2">
+        <div className={styles.pagination}>
+          <a href="#">&laquo;</a>
+          <a href="#">1</a>
+          <a className={styles.active} href="#">
+            2
+          </a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
       </div>
     </div>
   );
