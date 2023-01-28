@@ -22,6 +22,9 @@ const Footer = () => {
           <a> © 2020 bike.All right reserved</a>
         </div>
 
+       <div></div>
+
+
         <div className={styles.appLink}>
           <h3 className="text-2xl ">Get the App</h3>
           <div className=" border-l-4 pl-8 border-l-bermuda">
