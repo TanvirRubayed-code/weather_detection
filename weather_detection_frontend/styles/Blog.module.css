@@ -1,0 +1,212 @@
+
+.main_back {
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
+.categories_section {
+    /* background-color:white; */
+
+    display: flex;
+    flex-direction: column;
+}
+.blog_text_des{
+    background-color: white;
+    height: 100px;
+    display: flex;
+    align-items:center;
+    border-bottom: 2px solid rgb(224, 224, 224);
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.blog_text_des h3 {
+    margin-left: 100px;
+    font-size: 35px;
+    font-style: bold;
+    justify-content: center;
+    align-content: center;
+
+}
+.blog_text_des p {
+    margin-right: 100px;
+    font-size: 14px;
+    color: rgb(0, 0, 0, 0.6);
+    word-spacing: 10px;
+}
+
+.blog_container {
+    display: flex;
+
+    width: 100%;
+
+}
+.blog_side_sec {
+    width: 30%;
+    margin-left:100px;
+    margin-right: 40px;
+}
+.card_section {
+  
+
+    margin-bottom: 35px;
+    margin-right: 100px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+.first_card {
+    width: 47%;
+    background-color: white;
+    height:430px ;
+    margin-right: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 30px;
+
+}
+
+.card_image{
+    height: 250px;
+    width:100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.textbox {
+    margin: 10px 25px;
+}
+.textbox h2 {
+    margin: 5px 0;
+    font-size: 16px;
+}
+.textbox p {
+    font-size: 13px;
+}
+.hypen {
+    padding: 0 8px;
+}
+.search_form {
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search_form input{
+    width: 100%;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin: 20px 16px 20px 40px;
+}
+
+.search_form button {
+    margin: 20px 20px 20px 0;
+}
+.categories {
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.categories h3 {
+    margin-left: 40px;
+}
+
+.categories ul{
+    /* margin: 0; */
+    padding: 0;
+    margin: 5px 30px 20px 30px;
+}
+
+.categories li{
+   
+    padding: 10px;
+    list-style-type: none;
+    border-bottom: 1px solid gray;
+}
+.categories li:hover{
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.top_post_section {
+    background-color: white ;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.top_post_section h3{
+    margin-left: 40px;
+}
+
+.top_post {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 30px 20px 30px;
+}
+.top_post_header {
+    margin-left: 14px;
+    margin-bottom: 8px;
+}
+.top_post_header h2{
+    font-size: 14px;
+    margin: 0 0 5px 0;
+   
+}
+.top_post_number h3{
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+}
+.top_post_header small {
+    color: rgb(104, 104, 104);
+    
+}
+.caterogy_small{
+    padding:0 10px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .pagination a {
+    color: black;
+    background-color: white;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .floating_button {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  }
+  .floating_button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+
+  }
+
+  

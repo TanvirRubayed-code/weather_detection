@@ -1,0 +1,362 @@
+
+
+.shopNav {
+  position: relative;
+  height: 40px;
+}
+
+.productType {
+  padding: 0;
+  list-style-type: none;
+  background-color: #0175a3;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: none;
+  position: absolute;
+  transition: opacity .9s ease-in;
+}
+
+.shopNav:hover .productType {
+  display: block;
+}
+
+.productType li {
+  padding: 9px 12px;
+  border-bottom: 2px solid white;
+}
+
+.productType li:last-child {
+  border-radius: 5px;
+}
+
+.med {
+  position: relative;
+}
+
+.medOptions {
+  padding: 0;
+  list-style-type: none;
+  background-color: #0175a3;
+  border-radius: 5px;
+  left: 100%;
+  margin-left: 5px;
+  top: 0;
+  display: none;
+  position: absolute;
+  transition: opacity .9s ease-in;
+}
+
+
+
+.med:hover .medOptions {
+  display: block;
+}
+
+.food {
+  position: relative;
+}
+
+.foodOptions {
+  padding: 0;
+  list-style-type: none;
+  background-color: #0175a3;
+  border-radius: 5px;
+  left: 100%;
+  margin-left: 5px;
+  top: 0;
+  display: none;
+  position: absolute;
+  transition: opacity .9s ease-in;
+}
+
+
+
+.food:hover .foodOptions {
+  display: block;
+}
+
+.banner {
+
+  /* background-color: #264653; */
+  background-image: url("../image/back1.jpg");
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+.background_wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  width: 500px;
+  margin-left: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  user-select: none;
+}
+
+
+.text h5 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.text h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.4em;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+
+
+
+/* ---------------------------------------------------footer----------------------------------------------------------------------- */
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploader {
+  margin: 0 auto;
+  padding: 80px !important;
+  margin-top: 100px;
+}
+
+.uploader_frame p {
+  color: #0070f3;
+  text-align: center;
+}
+
+.uploader_frame {
+  margin-top: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 150px;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+
+
+
+.dogImage {
+
+  margin-right: 150px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.dogImage img {
+  height: 480px;
+}
+
+.btnStyle,
+.loginbtn {
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 0;
+  color: rgb(9, 116, 187);
+  font-size: 15px;
+  border-radius: 7px;
+  background-color: #ffffff;
+  transition: background-color .3s ease-in;
+}
+
+.btnStyle {
+  padding: 8px 25px;
+  margin-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid transparent;
+}
+
+.btnStyle:hover {
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
+  color: white;
+}
+
+.loginbtn {
+  margin-left: 20px;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+}
+
+.loginbtn:hover {
+  cursor: pointer;
+  background-color: rgb(9, 116, 187);
+  border: 1px solid rgb(9, 116, 187);
+  color: white;
+}
+
+.footerMain {
+  background-color: #0B0D17;
+  display: flex;
+  height: 220px;
+  color: white;
+  justify-content: space-around;
+
+}
+
+.footerFirst {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+}
+
+.footerDownAndLicense {
+  display: flex;
+  gap: 20px;
+
+}
+
+.footerFeatures {
+  display: flex;
+  gap: 15px;
+}
+
+.appLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.appleLink {
+  display: flex;
+  border: 1px solid white;
+  height: 60px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+
+}
+
+.appLogo img {
+  width: 25px;
+  height: 25px;
+}
+
+.appText h6 {
+  margin-bottom: 0;
+
+  user-select: none;
+}
+
+.appText h3 {
+  margin-top: 0;
+  user-select: none;
+}
+
+.playStoreLink {
+  display: flex;
+  border: 1px solid white;
+  height: 60px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+}
+
+.playStoreLogo img {
+  padding-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+.playStoreText h6 {
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.playStoreText h3 {
+  margin-top: 0;
+  user-select: none;
+
+}
+
+.PageTitle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.current_weather {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0 100px 0;
+  margin-right: 120px;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+  border-radius: 5px;
+  transition: all 0.3s linear;
+}
+
+.current_weather:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.temperature {
+  font-size: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.current_weather small {
+  font-size: 12px;
+}
+
+.current_weather_image {
+  height: 100px;
+  width: 100px;
+}
+
+.image_text_current {
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+}
