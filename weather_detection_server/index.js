@@ -19,35 +19,31 @@ async function server() {
         const weatherCollection = database.collection("weather")
         const userCollection = database.collection("users")
 
+        app.get('/users', async (req, res) => {
+            const result = await userCollection.find({}).toArray();
+            console.log(result)
+            res.json(result);
+        })
         app.get('/users/:userName', async (req, res) => {
             const userName = req.params.userName;
             const filter = { userName }
             const result = await userCollection.findOne(filter);
             res.json(result == null ? false : true)
         })
-
         app.get('/user_login/:userName', async (req, res) => {
             const userName = req.params.userName;
-            const filter = { userName: userName }
+            const filter = { userName : userName }
             const result = await userCollection.findOne(filter);
             res.json(result)
         })
-
         app.post('/users', async (req, res) => {
             const finalData = req.body;
             const result = await userCollection.insertOne(finalData);
             res.json(result)
         })
-
-        app.get('/users', async (req, res) => {
-
-            const result = await userCollection.find({}).toArray();
-            res.json(result)
-        })
-
         app.get('/weather', async (req, res) => {
             //const filter = {"class": {$lte: 2}}
-            const result = await weatherCollection.find({}).toArray();
+            const result = await userCollection.find({}).toArray();
             res.json(result);
         })
     }

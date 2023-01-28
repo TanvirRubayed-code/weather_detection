@@ -13,3 +13,8 @@ for uncommit
 >> git reset  --soft  HEAD^
 >> git reset HEAD^
 >> git reset --hard HEAD^ 
+
+
+
+server start command 
+>> npm start

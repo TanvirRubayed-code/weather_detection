@@ -4,9 +4,20 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from 'next/router';
+import { useState } from "react"
 
 const Login = () => {
   const router = useRouter();
+  const [noUser, setNoUser] = useState();
+
+  const handleUserName = (e) => {
+    const typedUserName = e.target.value;
+
+    if (noUser) {
+      e.target.style.border = "0.5px solid red";
+      e.target.style.outline = "0px solid red";
+    }
+  }
 
   const handleLoginData = (e) => {
     e.preventDefault();
@@ -28,7 +39,8 @@ const Login = () => {
 
     axios.get(`http://localhost:4000/user_login/${login_info.userName}`)
       .then(res => {
-        if (res.data.userName) {
+        if (res.data != null) {
+          setNoUser(false);
           if (res.data.password == login_info.password) {
             alert("Logged in successfully")
             router.push("./")
@@ -36,9 +48,11 @@ const Login = () => {
           else {
             alert("Password doesn't match")
           }
+        } else {
+          alert("No such user")
+          setNoUser(true);
         }
       });
-
   }
 
 
@@ -49,7 +63,7 @@ const Login = () => {
           <h1>Login</h1>
           <div className={styles.content}>
             <div className={styles.input_field}>
-              <input id="username" name="userName" type="text" placeholder="username" />
+              <input id="username" name="userName" type="text" placeholder="username" onSubmit={handleUserName} />
             </div>
             <div className={styles.input_field}>
               <input
