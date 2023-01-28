@@ -122,6 +122,16 @@ function Post() {
                 Magnam, nulla!
               </h2>
             </div>
+            
+            <div className={styles.embededVideos}>
+            <h2> 
+         <center> <iframe width="560" height="315" src="https://www.youtube.com/embed/668nUCeBHyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/AGcTCvn-a6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </center> 
+         </h2>
+            </div>
+            
+
           </div>
         </div>
       </div>
