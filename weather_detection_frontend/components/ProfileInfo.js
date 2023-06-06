@@ -133,23 +133,12 @@ function ProfileInfo() {
                         </div>
                     </div>
                     <div className="text-blue-500 text-sm font-semibold">Student</div>
-                    <div className="text-sm mt-4 text-gray-700">Ratings</div>
-                    <div className="flex items-center ">
-                        <div className="font-semibold">{ratingvlaue}</div>
-                        <div className="flex items-center">
-                            <div className="pl-2">
-                                <ReactStars
-                                    count={5}
-                                    value={ratingvlaue}
-                                    activeColor="#ffd700"
-                                    edit={false}
-                                />
-                            </div>
-                            <div className="ml-20">
-                                <Link href="/user/edit">
-                                    <div className="flex bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded">Edit profile <FaEdit size={22} color="black" className="ml-3"></FaEdit></div>
-                                </Link>
-                            </div>
+                    <div className="flex items-center">
+
+                        <div className="mt-4">
+                            <Link href="/user/edit">
+                                <div className="flex bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded">Edit profile <FaEdit size={22} color="black" className="ml-3"></FaEdit></div>
+                            </Link>
                         </div>
 
                     </div>

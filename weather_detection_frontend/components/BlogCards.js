@@ -1,20 +1,49 @@
 import styles from "../styles/Blog.module.css";
-import Image from "next/image";
 import SingleBlogCard from "../components/singleblogCard";
 import BlogSideSection from "./blogSideSection";
-import autumn from "../image/autumn.jpg";
-import food from "../image/food.jpg";
-import late_autumn from "../image/late_autumn.jpg";
-import rainy from "../image/rainy2.jpg";
-import spring from "../image/spring.jpg";
-import summer from "../image/Summer.jpg";
-import plus from "../image/plus.png";
 import Link from "next/link";
-import { AiFillPlusCircle } from "react-icons/ai"
+
 import { BiEdit } from "react-icons/bi"
 import { FaEdit, FiEdit } from 'react-icons/fa'
+import { useEffect, useState } from "react";
 
 function BlogCards() {
+  const [allposts, setAllposts] = useState([]);
+  const [totalpost, setTotalPost] = useState(0);
+  const [pagin, setPagin] = useState(1);
+  const [pagenumber, setPageNumber] = useState(1);
+  const paginArray = ["<"];
+
+
+
+
+  const setAllData = (data) => {
+    setAllposts(data.result);
+    setTotalPost(data.count);
+    console.log(data.count);
+    setPagin(Math.ceil(totalpost / 4.0));
+
+  }
+
+  const handlePage = (pagenumber) => {
+    setPageNumber(pagenumber);
+  }
+
+  const clickedOnPost = (title) => {
+    console.log(title);
+  }
+
+  for (let i = 1; i <= pagin; i++) {
+    paginArray.push(i);
+  }
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/all-posts?page=${pagenumber}`)
+      .then(res => res.json())
+      .then(data => setAllData(data));
+  }, [pagenumber])
+
+
   return (
     <div className="bg-gray-200">
       <div className={styles.blog_text_des}>
@@ -34,27 +63,34 @@ function BlogCards() {
         <div className={styles.blog_side_sec}>
           <BlogSideSection></BlogSideSection>
         </div>
-        <div className={styles.card_section}>
-          <SingleBlogCard image={spring} />
-          <SingleBlogCard image={food} />
-          <SingleBlogCard image={late_autumn} />
-          <SingleBlogCard image={rainy} />
-          <SingleBlogCard image={autumn} />
-          <SingleBlogCard image={summer} />
+        <div className="flex w-full flex-wrap">
+          {
+            allposts.map(post => {
+              return (
+                <SingleBlogCard post={post} />
+              )
+
+            })
+          }
+
+
         </div>
       </div>
       <div className="pb-2">
         <div className={styles.pagination}>
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a className={styles.active} href="#">
-            2
-          </a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">&raquo;</a>
+          {
+            paginArray.map(page => {
+              return (
+                pagenumber == page ?
+                  <h3 className={styles.active} onClick={() => handlePage(page)}>{page}</h3> :
+                  <h3 onClick={() => handlePage(page)}>{page}</h3>
+              )
+            })
+          }
+
+
+
+
         </div>
       </div>
     </div>
