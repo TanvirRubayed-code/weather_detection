@@ -1,27 +1,50 @@
-import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import React, { useEffect, useState } from "react";
 import logo from "../image/cloudy2.png";
 import Link from "next/link";
-import Image from "next/image";
-import ProfileInfo from "./ProfileInfo";
 import { CgProfile } from "react-icons/cg"
 import { IoIosLogOut } from "react-icons/io"
 import { useRouter } from 'next/router';
-import { Alert } from 'flowbite-react';
 
 
-let login = true;
+
+let login = false;
 
 const Navigation = () => {
 
+
+
+
   const [userIconClick, setUserIconClick] = useState(false);
-  const [loginState, setLoginState] = useState(true)
+  const [loginState, setLoginState] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const router = useRouter();
+
+
+  useEffect(() => {
+    const localuserId = localStorage.getItem("userid");
+    if (localuserId) {
+      sessionStorage.setItem("userid", localuserId);
+    }
+    const item = sessionStorage.getItem('userid')
+    if (item) {
+      setLoggedIn(true);
+      setLoginState(true);
+    }
+  }, [])
 
   const userInfoClick = () => {
     console.log("clicked");
   }
+
+  const LogOutHandle = () => {
+    setUserIconClick(!userIconClick);
+    router.push('/');
+    window.location.reload(true);
+    sessionStorage.removeItem("userid");
+    localStorage.removeItem("userid");
+  }
+
 
   return (
     <>
@@ -55,7 +78,7 @@ const Navigation = () => {
                           <Link onClick={() => setUserIconClick(!userIconClick)} href="/user" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><CgProfile /><div className="ml-2">Profile</div></div></Link>
                         </li>
                         <li>
-                          <a onClick={() => setUserIconClick(!userIconClick)} href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><IoIosLogOut /><div className="ml-2">Logout</div></div></a>
+                          <a onClick={LogOutHandle} href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><IoIosLogOut /><div className="ml-2">Logout</div></div></a>
                         </li>
 
                       </ul>
@@ -120,14 +143,21 @@ const Navigation = () => {
                 </li>
 
 
-                <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
-                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/classify">
-                    {
-                      router.pathname == "/classify" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
-                        Classify
-                      </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
-                    }
-                  </Link>
+                <li className="flex flex-col items-center justify-center mr-4 px-4 h-20 border-b-4 border-b-transparent">
+                  {
+                    loggedIn == true ? <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/classify">
+                      {
+                        router.pathname == "/classify" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
+                          Classify
+                        </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
+                      }
+                    </Link> :
+                      <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/login">
+
+                        <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
+
+                      </Link>
+                  }
 
                 </li>
               </ul>

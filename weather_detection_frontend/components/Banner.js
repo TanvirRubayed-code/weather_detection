@@ -15,12 +15,22 @@ const Banner = () => {
   const [longitude, setLongitude] = useState(0);
   const [temperature, setTemperature] = useState(0);
 
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+
+  useEffect(() => {
+    const item = sessionStorage.getItem('userid')
+    if (item) {
+      setLoggedIn(true);
+    }
+  }, [])
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLatitude(parseFloat(position.coords.latitude.toFixed(2)));
       setLongitude(parseFloat(position.coords.longitude.toFixed(2)));
-      console.log("Latitude is :", latitude);
-      console.log("Longitude is :", longitude);
+
     });
   });
 
@@ -51,11 +61,14 @@ const Banner = () => {
             </p>
 
 
+            {
+              loggedIn == true ? <Link className={styles.btnStyle} href="/classify">
+                Predict Weather
+              </Link> : <Link className={styles.btnStyle} href="/login">
+                Predict Weather
+              </Link>
+            }
 
-
-            <Link className={styles.btnStyle} href="/classify">
-              Predict Weather
-            </Link>
           </div>
           <div className={styles.current_weather}>
             <div className={styles.image_text_current}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import summer from "../image/Summer.jpg";
 import { MdLocationOn } from "react-icons/md"
@@ -8,9 +8,19 @@ import ReactStars from "react-rating-stars-component";
 import styles from "../styles/Blog.module.css";
 import { FaBrain } from "react-icons/fa"
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
 function ProfileInfo() {
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const item = sessionStorage.getItem('userid')
+        if (!item) {
+            router.push('/')
+        }
+    }, [])
 
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
