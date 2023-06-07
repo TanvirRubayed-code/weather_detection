@@ -195,7 +195,7 @@ const Register = () => {
     <>
       <div className={styles.register_form}>
         <form onSubmit={hangleSignUpData}>
-          <h1>Register</h1>
+          <h1>Sign Up</h1>
           <div className={styles.content}>
             <div className={styles.input_field}>
               <input id='username' name="userName" placeholder="Username" onChange={handleUserName} />
@@ -278,7 +278,7 @@ const Register = () => {
             </div>
           </div>
           <div className={styles.action}>
-            <button type="submit">Register</button>
+            <button type="submit">Signup</button>
           </div>
         </form>
       </div>

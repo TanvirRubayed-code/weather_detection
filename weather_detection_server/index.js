@@ -28,6 +28,11 @@ async function server() {
         const postCollection = database.collection("posts");
 
 
+        app.get("/posts", async(req, res)=>{
+            const {post_key} = req.query;
+            console.log(req.query)
+        })
+
         // ----------------------users post submit to database -------------------
 
         app.post('/post-data', async (req, res) => {
@@ -71,7 +76,7 @@ async function server() {
 
         app.get('/single-post', async (req, res) => {
             const title = req.query.posttitle;
-            console.log(title);
+            // console.log(title);
             const result = await postCollection.find({ "postTitle": `${title}` }).toArray();
             res.json(result);
         })

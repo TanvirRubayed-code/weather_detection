@@ -80,11 +80,11 @@ const Login = () => {
           </div>
           <div className={styles.action}>
             <Link className={styles.action_button} href="/signup">
-              <button>Register</button>
+              <button>Singup</button>
             </Link>
 
             <button type="submit" className={styles.login_button}>
-              Sign in
+              Login
             </button>
           </div>
         </form>

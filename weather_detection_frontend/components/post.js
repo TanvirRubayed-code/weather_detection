@@ -22,9 +22,7 @@ function Post({ title }) {
 
   const [fullpost, setFullPost] = useState(null);
 
-
-
-
+ 
 
   // ----------------like and dislike handeling ------------
 

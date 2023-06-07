@@ -1,4 +1,4 @@
-import styles from "../styles/Blog.module.css";
+  import styles from "../styles/Blog.module.css";
 import SingleBlogCard from "../components/singleblogCard";
 import BlogSideSection from "./blogSideSection";
 import Link from "next/link";

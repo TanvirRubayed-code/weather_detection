@@ -14,7 +14,9 @@
 
 .register_form h1 {
   padding: 35px 35px 0 35px;
+  font-size: 30px;
   font-weight: 300;
+  text-align: center;
 }
 
 .register_form .content {
