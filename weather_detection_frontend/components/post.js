@@ -86,7 +86,7 @@ function Post({ title }) {
   }, [title])
 
 
-  // console.log(fullpost);
+  console.log(fullpost);
 
 
   return (

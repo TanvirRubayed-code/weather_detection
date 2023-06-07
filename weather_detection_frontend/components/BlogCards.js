@@ -12,7 +12,18 @@ function BlogCards() {
   const [totalpost, setTotalPost] = useState(0);
   const [pagin, setPagin] = useState(1);
   const [pagenumber, setPageNumber] = useState(1);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const paginArray = ["<"];
+
+
+  useEffect(() => {
+    const item = sessionStorage.getItem('userid')
+    if (item) {
+      setLoggedIn(true);
+    }
+  }, [])
 
 
 
@@ -51,11 +62,17 @@ function BlogCards() {
         <p>HOME / BLOG</p>
       </div>
 
-      <Link href="/blog/post">
-        <div className="fixed p-3 shadow-xl rounded bg-navbar border-2 transition border-gray-600 bottom-10 right-7 hover:bg-blue-400">
-          <BiEdit size={30} color="#ffffff"></BiEdit>
-        </div>
-      </Link>
+      {
+        loggedIn === true ? <Link href="/blog/post">
+          <div className="fixed p-3 shadow-xl rounded bg-navbar border-2 transition border-gray-600 bottom-10 right-7 hover:bg-blue-400">
+            <BiEdit size={30} color="#ffffff"></BiEdit>
+          </div>
+        </Link> : <Link href="/login">
+          <div className="fixed p-3 shadow-xl rounded bg-navbar border-2 transition border-gray-600 bottom-10 right-7 hover:bg-blue-400">
+            <BiEdit size={30} color="#ffffff"></BiEdit>
+          </div>
+        </Link>
+      }
 
 
 

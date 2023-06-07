@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RichTextEditor from "../../components/RichTextEditor";
 import { Autocomplete, TextField } from "@mui/material";
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 
 function PostBlog() {
@@ -29,6 +30,15 @@ function PostBlog() {
 
         theme: "light",
     });
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const item = sessionStorage.getItem('userid')
+        if (!item) {
+            router.push('/')
+        }
+    }, [])
 
 
     const options = ['Season', 'Prediction', 'Others'];

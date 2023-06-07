@@ -1,18 +1,27 @@
 
-import { FileUploader } from "react-drag-drop-files";
-import { useState } from "react";
-import styles from "../styles/Home.module.css"
+import { useEffect, useState } from "react";
 import { TbUpload } from "react-icons/tb"
 import { AiFillDelete } from "react-icons/ai"
+import { useRouter } from 'next/router';
 
 
 const fileTypes = ["JPEG", "PNG", "JPG"];
 
 export default function App() {
 
+  const router = useRouter();
+
   const [previewshow, setPreviewshow] = useState(false)
   const [file, setFile] = useState(null);
   const [imageurl, setImageURl] = useState("");
+
+
+  useEffect(() => {
+    const item = sessionStorage.getItem('userid')
+    if (!item) {
+      router.push('/login')
+    }
+  }, [])
 
   const handleChange = (file) => {
     setFile(file);

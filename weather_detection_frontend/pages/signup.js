@@ -269,13 +269,7 @@ const Register = () => {
               </h5>
             </div>
 
-            <div className={styles.legacy}>
-              <p>
-                {" "}
-                <input type="checkbox"></input> By creating an account you agree
-                to our <a href="#">Terms & Privacy</a>.
-              </p>
-            </div>
+
           </div>
           <div className={styles.action}>
             <button type="submit">Signup</button>
