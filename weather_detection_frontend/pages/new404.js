@@ -124,9 +124,6 @@ export default function IndexPage() {
         margin: 0 auto;
       }
 
-
-
-
       `}</style> 
     </div>
   );
