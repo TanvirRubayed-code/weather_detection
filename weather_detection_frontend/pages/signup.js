@@ -15,7 +15,7 @@ const Register = () => {
   const [passwordTyped, setPasswordTyped] = useState();
 
   const [noUserName, setNoUserName] = useState();
-  const [userExists, setUserExits] = useState();
+  const [userExists, setUserExits] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState();
   const [invalidPhoneNo, setInvalidPhoneNo] = useState();
   const [weakPassword, setWeakPassword] = useState();
@@ -36,20 +36,15 @@ const Register = () => {
       if (userName == typedUserName) {
         setUserExits(true);
         setNoUserName(false);
-        e.target.style.border = "0.5px solid red";
-        e.target.style.outline = "0px solid red";
-      } else if (typedUserName == "") {
-        setNoUserName(true);
-        setUserExits(false);
-        e.target.style.border = "0.5px solid red";
-        e.target.style.outline = "0px solid red";
-      } else {
-        setNoUserName(false);
-        setUserExits(false);
-        e.target.style.border = "0.5px solid green";
-        e.target.style.outline = "0px solid green";
+        break;
       }
+      setUserExits(false);
     }
+    if (userExists) {
+      e.target.style.border = "0.5px solid red";
+      e.target.style.outline = "0px solid red";
+    }
+
     setUserNameTyped(typedUserName);
   };
 
@@ -178,13 +173,16 @@ const Register = () => {
     const finalValue = {
       userName: info.userName,
       email: info.email,
-      password: info.password
+      password: info.password,
+      phone: info.phone
     };
+
     axios.post(`http://localhost:4000/users`, finalValue)
       .then(res => {
         if (res.data.insertedId) {
-          alert("Signed up successfully");
-          router.push("./login")
+          sessionStorage.setItem("userid", res.data.insertedId);
+          router.push("/")
+          window.location.reload(true);
         }
       })
   };
@@ -221,7 +219,7 @@ const Register = () => {
             )}
 
             <div className={styles.input_field}>
-              <input id="phoneNo" name="email" type="tel" placeholder="Phone No" onChange={handlePhoneNo} />
+              <input id="phoneNo" name="phone" type="tel" placeholder="Phone No" onChange={handlePhoneNo} />
             </div>
             {invalidPhoneNo === true && (
               <div class={styles.errorMessage}>Invalid Phone Number</div>

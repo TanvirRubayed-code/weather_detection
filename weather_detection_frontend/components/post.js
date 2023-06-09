@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import StarRatings from 'react-star-ratings';
 
 import { BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsUpFill, BsHandThumbsDownFill, BsFillHandThumbsDownFill } from 'react-icons/bs';
+import axios from "axios";
 
 
 
@@ -20,7 +21,48 @@ function Post({ title }) {
 
   const [activeBtn, setActiveBtn] = useState("none");
 
-  const [fullpost, setFullPost] = useState(null);
+  const [fullpost, setFullPost] = useState({});
+
+  const [userid, setUserId] = useState('');
+  const [ratingDetails, setRatingDetails] = useState([]);
+  const [givenRating, setGivenRating] = useState(0);
+  const [change, setChange] = useState(false);
+
+
+
+  useEffect(() => {
+    const uid = sessionStorage.getItem("userid");
+    setUserId(uid);
+  }, [])
+
+
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/get-ratings`)
+      .then(res => setRatingDetails(res.data))
+  }, []);
+
+
+  let grt = 0;
+  let ratingFlag = false;
+  let addRating = false;
+  const rateDetail = [];
+  ratingDetails.map(rating => {
+
+    if (rating._id == fullpost?._id) {
+      addRating = true;
+      rating.ratingdetails.map(gRating => {
+
+
+        if (gRating._id == userid) {
+          grt = gRating.rating;
+          ratingFlag = true;
+        }
+      })
+    }
+
+  })
 
 
 
@@ -72,15 +114,6 @@ function Post({ title }) {
   // ----------------like and dislike handeling end------------
 
 
-
-
-  const changeRating = (newRating) => {
-    setRating(newRating);
-    console.log(newRating);
-  }
-
-
-
   useEffect(() => {
     fetch(`http://localhost:4000/single-post?posttitle=${title}`)
       .then(res => res.json())
@@ -88,7 +121,47 @@ function Post({ title }) {
   }, [title])
 
 
-  console.log(fullpost);
+  const changeRating = (newRating) => {
+    setRating(newRating);
+
+    setGivenRating(newRating);
+
+    const rating = {
+      _id: fullpost?._id,
+      posttitle: fullpost?.postTitle,
+      ratingdetails: [
+        {
+          _id: userid,
+          rating: newRating
+        }
+      ]
+
+    }
+
+    if (ratingFlag || change) {
+
+      axios.post('http://localhost:4000/update-previous-rating', rating)
+        .then(res => console.log(res))
+    }
+    else if (addRating) {
+      setChange(true);
+      rateDetail.push({ _id: userid, rating: newRating });
+      axios.post('http://localhost:4000/update-ratings', rating)
+        .then(res => console.log(res))
+    }
+    else {
+      setChange(true);
+      axios.post(`http://localhost:4000/post-ratings`, rating)
+        .then(res => console.log(res))
+
+    }
+
+  }
+
+
+
+
+  // console.log(fullpost);
 
 
   return (
@@ -297,15 +370,25 @@ function Post({ title }) {
 
           <div className="mt-4">
             <h2 className=" text-4xl text-center py-3">Rate this post</h2>
-            <StarRatings
-              rating={rating}
-              starRatedColor="darkblue"
-              starDimension="40px"
-              starSpacing="15px"
-              changeRating={changeRating}
-              numberOfStars={5}
-              name='rating'
-            />
+            {
+              givenRating > 0 ? <StarRatings
+                rating={givenRating}
+                starRatedColor="darkblue"
+                starDimension="40px"
+                starSpacing="15px"
+                changeRating={changeRating}
+                numberOfStars={5}
+                name='rating'
+              /> : <StarRatings
+                rating={grt}
+                starRatedColor="darkblue"
+                starDimension="40px"
+                starSpacing="15px"
+                changeRating={changeRating}
+                numberOfStars={5}
+                name='rating'
+              />
+            }
             <h3 className="text-center py-4">Average ratings: 3.4</h3>
           </div>
 
@@ -315,9 +398,7 @@ function Post({ title }) {
       </div>
 
 
-      <div className="flex justify-center mt-20">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/AGcTCvn-a6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
+
     </div>
   );
 }

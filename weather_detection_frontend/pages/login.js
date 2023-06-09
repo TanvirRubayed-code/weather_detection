@@ -20,7 +20,6 @@ const Login = () => {
     const item = sessionStorage.getItem('userid')
     if (localuserId || item) {
       router.push('/')
-      window.location.reload(true);
     }
   }, [])
 
