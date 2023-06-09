@@ -19,6 +19,8 @@ const port = 4000
 const url = "mongodb+srv://weather_detection:weather_detection12345@cluster0.pz1hxyg.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
+const ObjectId = mongodb.ObjectId;
+
 async function server() {
     try {
         await client.connect()
@@ -26,10 +28,12 @@ async function server() {
         const weatherCollection = database.collection("weather")
         const userCollection = database.collection("users")
         const postCollection = database.collection("posts");
+        const likeDislikeCollection = database.collection("like_dislike");
+        const commentCollection = database.collection("comments");
 
 
-        app.get("/posts", async(req, res)=>{
-            const {post_key} = req.query;
+        app.get("/posts", async (req, res) => {
+            const { post_key } = req.query;
             console.log(req.query)
         })
 
@@ -43,8 +47,6 @@ async function server() {
                 const result = await postCollection.insertOne(fullpost);
                 res.send("success")
             }
-
-
 
         })
 
@@ -66,6 +68,139 @@ async function server() {
             const result = await postCollection.find({}).skip(skip).limit(ITEMS_PER_PAGE).toArray();
             res.json({ count, result });
         })
+
+
+        //---------------------like / dislike ----------------------------
+
+        app.get("/get-like-dislike/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = {
+                postID: ObjectId(id)
+            };
+            const cursor = likeDislikeCollection.find(filter);
+            const result = await cursor.toArray();
+            res.json(result);
+        });
+
+        app.post("/get-like-or-dislike/:id", async (req, res) => {
+            const id = req.params.id;
+            const { activeState } = req.body;            
+            console.log(activeState);
+
+            const filter = {
+                postID: ObjectId(id),
+                activeState: activeState
+            };
+            
+            const cursor = likeDislikeCollection.find(filter);
+            const result = await cursor.toArray();
+            res.json(result);
+        });
+
+        app.post("/get-user-like-dislike/:id", async (req, res) => {
+            const id = req.params.id;
+            const { userName } = req.body;            
+            console.log(userName);
+
+            const filter = {
+                postID: ObjectId(id),
+                userName: userName
+            };
+            const result = await likeDislikeCollection.findOne(filter);
+            res.json(result);
+        });
+
+        app.put('/update-like-dislike/:id', async (req, res) => {
+            const id = req.params.id;
+            const { userName, activeState } = req.body;            
+            console.log(userName);
+
+            const filter = {
+                postID: ObjectId(id),
+                userName: userName
+            };
+            
+            const result = await likeDislikeCollection.updateOne(filter, {
+              $set: {
+                activeState: activeState
+              }
+            })
+            res.json(result);
+            // const id = req.params.id;
+            // const { userName, activeState } = req.body;
+            // const doc = {
+            //     postID: ObjectId(id),
+            //     userName,
+            //     activeState
+            // };
+            // const filter = {
+            //   _id: ObjectId(id),
+            //   userName: userName
+            // }
+
+            // const result = await likeDislikeCollection.updateOne(filter, {
+            //   $set: {
+            //     activeState: "like"
+            //   }
+            // })
+            // res.json(result);
+          })
+
+        // app.post("/get-user-like-dislike/:id", async (req, res) => {
+        //     const id = req.params.id;
+        //     const  { userNames } = req.body;
+        //     console.log(userNames);
+        //     const filter = {
+        //         postID: ObjectId(id)
+        //     };
+        //     const cursor = likeDislikeCollection.find(filter);
+        //     const result = await cursor.toArray();
+        //     res.json(result);
+        // });
+
+        app.post("/new-like-dislike/:id", async (req, res) => {
+            const id = req.params.id;
+            const { userName, activeState } = req.body;
+            const doc = {
+                postID: ObjectId(id),
+                userName,
+                activeState
+            };
+            console.log(doc);
+            const result = await likeDislikeCollection.insertOne(doc);
+            res.json(result);
+        });
+
+
+
+
+        //----------------get all comments from database------------------
+
+        app.get("/comments/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = {
+                postID: ObjectId(id)
+            };
+            const cursor = commentCollection.find(filter);
+            const result = await cursor.toArray();
+            res.json(result);
+        });
+
+        //---------------------submit comment to database----------------
+
+        app.post("/comments/:id", async (req, res) => {
+            const id = req.params.id;
+            const { userName, comment } = req.body;
+            const doc = {
+                postID: ObjectId(id),
+                userName,
+                comment,
+                comment_date: new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/')
+            };
+            // console.log(doc);
+            const result = await commentCollection.insertOne(doc);
+            res.json(result);
+        });
 
 
         // --------------api to fetch all the user list and check username in frontend-------------
