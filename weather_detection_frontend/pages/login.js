@@ -23,6 +23,7 @@ const Login = () => {
     }
   }, [])
 
+
   const handleUserName = (e) => {
     const typedUserName = e.target.value;
 
@@ -35,6 +36,7 @@ const Login = () => {
   const handleCheckbox = (e) => {
     setSavePassFlag(e.target.checked);
   }
+
 
   const handleLoginData = (e) => {
     e.preventDefault();
@@ -79,6 +81,24 @@ const Login = () => {
     }
 
 
+
+
+    axios.get(`http://localhost:4000/user_login/${login_info.userName}`)
+      .then(res => {
+        if (res.data != null) {
+          setNoUser(false);
+          if (res.data.password == login_info.password) {
+            alert("Logged in successfully")
+            router.push("./")
+          }
+          else {
+            alert("Password doesn't match")
+          }
+        } else {
+          alert("No such user")
+          setNoUser(true);
+        }
+      });
 
   }
 

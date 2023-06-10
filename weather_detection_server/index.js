@@ -28,6 +28,7 @@ async function server() {
         const postCollection = database.collection("posts");
         const ratingCollection = database.collection("ratings");
 
+
         // ---------------rating start again ----------
         app.get("/get-ratings", async (req, res) => {
 
@@ -135,31 +136,34 @@ async function server() {
 
 
 
-        app.get('/users', async (req, res) => {
-            const result = await userCollection.find({}).toArray();
 
-            res.json(result);
-        })
 
         // -------------------- user sign up data send to database -------------------
 
-        app.post('/users', async (req, res) => {
-            const finalData = req.body;
-            const result = await userCollection.insertOne(finalData);
-            res.json(result)
+
+        app.get('/users', async (req, res) => {
+            const result = await userCollection.find({}).toArray();
+            res.json(result);
         })
-
-
         app.get('/users/:userName', async (req, res) => {
             const userName = req.params.userName;
             const filter = { userName }
             const result = await userCollection.findOne(filter);
             res.json(result == null ? false : true)
         })
+
         app.get('/user_login/:userName', async (req, res) => {
             const userName = req.params.userName;
             const filter = { userName: userName }
             const result = await userCollection.findOne(filter);
+            res.json(result)
+        })
+
+
+
+        app.post('/users', async (req, res) => {
+            const finalData = req.body;
+            const result = await userCollection.insertOne(finalData);
             res.json(result)
         })
 
