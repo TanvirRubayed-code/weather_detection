@@ -15,16 +15,25 @@ const LikeDislike = ({ postID }) => {
     const [dislikeCount, setDislikeCount] = useState(25);
 
     const [activeBtn, setActiveBtn] = useState("none");
+    const [userID, setUserID] = useState("");
+    const [userName, setUserName] = useState("");
+    const [fullName, setFullName] = useState("");
 
-    const userName = "saif";
+    useEffect(() => {
+        setUserID(sessionStorage.getItem("userid"));
+        setUserName(sessionStorage.getItem("userid"));
+    }, [])
+
+
+    console.log(userName);
 
     const [newUser, setNewUser] = useState(true);
 
     const [allLikesDislikes, setAllLikeDislike] = useState([]);
 
-    
+
     //------------------fetches all likes and dislikes--------------
-    
+
     useEffect(() => {
         if (postID !== undefined) {
             axios.get(`http://localhost:4000/get-like-dislike/${postID}`).then(res => {
@@ -40,10 +49,10 @@ const LikeDislike = ({ postID }) => {
     useEffect(() => {
         if (postID !== undefined) {
             let data = { activeState: "like" };
-                axios.post(`http://localhost:4000/get-like-or-dislike/${postID}`, data).then(res => {
-                    console.log(res.data.length);
-                    setLikeCount(res.data.length);
-                })
+            axios.post(`http://localhost:4000/get-like-or-dislike/${postID}`, data).then(res => {
+                console.log(res.data.length);
+                setLikeCount(res.data.length);
+            })
         }
     }, [postID])
 
@@ -53,10 +62,10 @@ const LikeDislike = ({ postID }) => {
     useEffect(() => {
         if (postID !== undefined) {
             let data = { activeState: "dislike" };
-                axios.post(`http://localhost:4000/get-like-or-dislike/${postID}`, data).then(res => {
-                    console.log(res.data.length);
-                    setDislikeCount(res.data.length);
-                })
+            axios.post(`http://localhost:4000/get-like-or-dislike/${postID}`, data).then(res => {
+                console.log(res.data.length);
+                setDislikeCount(res.data.length);
+            })
         }
     }, [postID])
 
@@ -66,15 +75,15 @@ const LikeDislike = ({ postID }) => {
     useEffect(() => {
         if (postID !== undefined) {
             let data = { userName };
-                axios.post(`http://localhost:4000/get-user-like-dislike/${postID}`, data).then(res => {
-                    if(res.data?.activeState == undefined) {
-                        setActiveBtn("none");
-                        setNewUser(true)
-                    } else {
-                        setActiveBtn(res.data?.activeState);
-                        setNewUser(false);
-                    }
-                })
+            axios.post(`http://localhost:4000/get-user-like-dislike/${postID}`, data).then(res => {
+                if (res.data?.activeState == undefined) {
+                    setActiveBtn("none");
+                    setNewUser(true)
+                } else {
+                    setActiveBtn(res.data?.activeState);
+                    setNewUser(false);
+                }
+            })
         }
     }, [postID])
 
@@ -102,7 +111,7 @@ const LikeDislike = ({ postID }) => {
             } else {
                 let data = { userName, activeState: "like" };
                 axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
+                    .then(res =>
                         console.log(res.data))
             }
 
@@ -114,9 +123,9 @@ const LikeDislike = ({ postID }) => {
             setActiveBtn("none");
 
             let data = { userName, activeState: "none" };
-                axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
-                        console.log(res.data))
+            axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
+                .then(res =>
+                    console.log(res.data))
             return;
         }
 
@@ -126,9 +135,9 @@ const LikeDislike = ({ postID }) => {
             setActiveBtn("like");
 
             let data = { userName, activeState: "like" };
-                axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
-                        console.log(res.data))
+            axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
+                .then(res =>
+                    console.log(res.data))
         }
 
     };
@@ -152,7 +161,7 @@ const LikeDislike = ({ postID }) => {
             } else {
                 let data = { userName, activeState: "dislike" };
                 axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
+                    .then(res =>
                         console.log(res.data))
 
             }
@@ -164,9 +173,9 @@ const LikeDislike = ({ postID }) => {
             setActiveBtn("none");
 
             let data = { userName, activeState: "none" };
-                axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
-                        console.log(res.data))
+            axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
+                .then(res =>
+                    console.log(res.data))
             return;
         }
 
@@ -176,9 +185,9 @@ const LikeDislike = ({ postID }) => {
             setActiveBtn("dislike");
 
             let data = { userName, activeState: "dislike" };
-                axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
-                    .then(res => 
-                        console.log(res.data))
+            axios.put(`http://localhost:4000/update-like-dislike/${postID}`, data)
+                .then(res =>
+                    console.log(res.data))
         }
     };
 

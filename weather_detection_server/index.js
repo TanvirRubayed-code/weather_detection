@@ -31,6 +31,32 @@ async function server() {
         const likeDislikeCollection = database.collection("like_dislike");
         const commentCollection = database.collection("comments");
 
+        //--------------------------get user info from database--------------------
+        app.get("/userName/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = {
+                postID: ObjectId(id)
+            };
+            const cursor = likeDislikeCollection.find(filter);
+            const result = await cursor.toArray();
+            res.json(result);
+        });
+
+        // app.post("/get-userInfo/:id", async (req, res) => {
+        //     const id = req.params.id;
+        //     // console.log(id);
+        //     try {
+        //         const filter = {
+        //             _id: ObjectId(id)
+        //         };
+
+        //         const result = await userCollection.find(filter).toArray();
+        //         res.send(result);
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
+        // });
+
 
         app.get("/posts", async (req, res) => {
             const { post_key } = req.query;
@@ -84,14 +110,14 @@ async function server() {
 
         app.post("/get-like-or-dislike/:id", async (req, res) => {
             const id = req.params.id;
-            const { activeState } = req.body;            
+            const { activeState } = req.body;
             console.log(activeState);
 
             const filter = {
                 postID: ObjectId(id),
                 activeState: activeState
             };
-            
+
             const cursor = likeDislikeCollection.find(filter);
             const result = await cursor.toArray();
             res.json(result);
@@ -99,7 +125,7 @@ async function server() {
 
         app.post("/get-user-like-dislike/:id", async (req, res) => {
             const id = req.params.id;
-            const { userName } = req.body;            
+            const { userName } = req.body;
             console.log(userName);
 
             const filter = {
@@ -112,51 +138,21 @@ async function server() {
 
         app.put('/update-like-dislike/:id', async (req, res) => {
             const id = req.params.id;
-            const { userName, activeState } = req.body;            
+            const { userName, activeState } = req.body;
             console.log(userName);
 
             const filter = {
                 postID: ObjectId(id),
                 userName: userName
             };
-            
+
             const result = await likeDislikeCollection.updateOne(filter, {
-              $set: {
-                activeState: activeState
-              }
+                $set: {
+                    activeState: activeState
+                }
             })
             res.json(result);
-            // const id = req.params.id;
-            // const { userName, activeState } = req.body;
-            // const doc = {
-            //     postID: ObjectId(id),
-            //     userName,
-            //     activeState
-            // };
-            // const filter = {
-            //   _id: ObjectId(id),
-            //   userName: userName
-            // }
-
-            // const result = await likeDislikeCollection.updateOne(filter, {
-            //   $set: {
-            //     activeState: "like"
-            //   }
-            // })
-            // res.json(result);
-          })
-
-        // app.post("/get-user-like-dislike/:id", async (req, res) => {
-        //     const id = req.params.id;
-        //     const  { userNames } = req.body;
-        //     console.log(userNames);
-        //     const filter = {
-        //         postID: ObjectId(id)
-        //     };
-        //     const cursor = likeDislikeCollection.find(filter);
-        //     const result = await cursor.toArray();
-        //     res.json(result);
-        // });
+        })
 
         app.post("/new-like-dislike/:id", async (req, res) => {
             const id = req.params.id;
