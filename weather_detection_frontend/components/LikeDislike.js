@@ -24,9 +24,6 @@ const LikeDislike = ({ postID }) => {
         setUserName(sessionStorage.getItem("userid"));
     }, [])
 
-
-    console.log(userName);
-
     const [newUser, setNewUser] = useState(true);
 
     const [allLikesDislikes, setAllLikeDislike] = useState([]);

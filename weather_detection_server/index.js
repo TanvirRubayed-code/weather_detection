@@ -28,8 +28,11 @@ async function server() {
         const weatherCollection = database.collection("weather")
         const userCollection = database.collection("users")
         const postCollection = database.collection("posts");
+
         const likeDislikeCollection = database.collection("like_dislike");
         const commentCollection = database.collection("comments");
+
+        const ratingCollection = database.collection("ratings");
 
 
         app.get('/users', async (req, res) => {
@@ -82,17 +85,71 @@ async function server() {
             console.log(req.query)
         })
 
+
+
+
+
+        // ---------------rating start again ----------
+        app.get("/get-ratings", async (req, res) => {
+
+            const result = await ratingCollection.find({}).toArray();
+            res.send(result);
+        })
+
+
+        app.post("/post-ratings", async (req, res) => {
+            const ratingdetails = req.body;
+
+            const result = await ratingCollection.insertOne(ratingdetails);
+
+            res.send("rating done");
+
+        })
+
+        app.post("/update-previous-rating", async (req, res) => {
+            const rating = req.body;
+
+            const postId = rating._id;
+            const userId = rating.ratingdetails[0]._id
+            const chgrate = rating.ratingdetails[0].rating
+            // console.log(userId);
+            const result = await ratingCollection.updateOne({
+                _id: postId, "ratingdetails._id": userId
+            }, {
+                $set: {
+                    "ratingdetails.$.rating": chgrate
+                }
+
+            })
+            res.send("rating updated")
+        })
+
+
+        app.post("/update-ratings", async (req, res) => {
+            const rating = req.body;
+            const addrating = rating.ratingdetails[0]
+            const postId = rating._id;
+            const result = await ratingCollection.updateOne({
+                _id: postId
+            }, {
+                $push: {
+                    ratingdetails: addrating
+                }
+
+            })
+            res.send("new rating added")
+        })
+
+
         // ----------------------users post submit to database -------------------
 
         app.post('/post-data', async (req, res) => {
 
             const fullpost = req.body
-            // console.log(req.body);
             if (fullpost.postTitle != "") {
                 const result = await postCollection.insertOne(fullpost);
                 res.send("success")
             }
-
         })
 
 
@@ -226,20 +283,16 @@ async function server() {
 
         app.get('/single-post', async (req, res) => {
             const title = req.query.posttitle;
-            // console.log(title);
             const result = await postCollection.find({ "postTitle": `${title}` }).toArray();
             res.json(result);
         })
 
 
 
-        app.get('/users', async (req, res) => {
-            const result = await userCollection.find({}).toArray();
 
-            res.json(result);
-        })
 
         // -------------------- user sign up data send to database -------------------
+
 
 
         app.post('/users', async (req, res) => {
@@ -249,6 +302,10 @@ async function server() {
         })
 
 
+        app.get('/users', async (req, res) => {
+            const result = await userCollection.find({}).toArray();
+            res.json(result);
+        })
 
         app.get('/users/:userName', async (req, res) => {
             const userName = req.params.userName;
@@ -256,6 +313,7 @@ async function server() {
             const result = await userCollection.findOne(filter);
             res.json(result == null ? false : true)
         })
+
         app.get('/user_login/:userName', async (req, res) => {
             const userName = req.params.userName;
             const filter = { userName: userName }
@@ -263,6 +321,13 @@ async function server() {
             res.json(result)
         })
 
+
+
+        app.post('/users', async (req, res) => {
+            const finalData = req.body;
+            const result = await userCollection.insertOne(finalData);
+            res.json(result)
+        })
         app.get('/weather', async (req, res) => {
             //const filter = {"class": {$lte: 2}}
             const result = await userCollection.find({}).toArray();

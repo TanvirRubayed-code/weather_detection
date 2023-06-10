@@ -1,5 +1,3 @@
-
-
 .shopNav {
   position: relative;
   height: 40px;
@@ -17,7 +15,7 @@
   margin-top: 10px;
   display: none;
   position: absolute;
-  transition: opacity .9s ease-in;
+  transition: opacity 0.9s ease-in;
 }
 
 .shopNav:hover .productType {
@@ -47,10 +45,8 @@
   top: 0;
   display: none;
   position: absolute;
-  transition: opacity .9s ease-in;
+  transition: opacity 0.9s ease-in;
 }
-
-
 
 .med:hover .medOptions {
   display: block;
@@ -70,17 +66,14 @@
   top: 0;
   display: none;
   position: absolute;
-  transition: opacity .9s ease-in;
+  transition: opacity 0.9s ease-in;
 }
-
-
 
 .food:hover .foodOptions {
   display: block;
 }
 
 .banner {
-
   /* background-color: #264653; */
   background-image: url("../image/back1.jpg");
   background-size: cover;
@@ -102,19 +95,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
-
 .text h5 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   margin: 0;
   margin-bottom: 15px;
 }
 
 .text h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.4em;
   margin: 0;
   margin-bottom: 20px;
@@ -126,11 +120,7 @@
   margin-bottom: 30px;
 }
 
-
-
-
 /* ---------------------------------------------------footer----------------------------------------------------------------------- */
-
 .footer {
   display: flex;
   flex: 1;
@@ -177,11 +167,7 @@
   text-decoration: underline;
 }
 
-
-
-
 .dogImage {
-
   margin-right: 150px;
   display: flex;
   align-items: flex-end;
@@ -194,19 +180,19 @@
 .btnStyle,
 .loginbtn {
   font-weight: 700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   color: rgb(9, 116, 187);
   font-size: 15px;
   border-radius: 7px;
   background-color: #ffffff;
-  transition: background-color .3s ease-in;
+  transition: background-color 0.3s ease-in;
 }
 
 .btnStyle {
   padding: 8px 25px;
   margin-top: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid transparent;
 }
 
@@ -235,7 +221,6 @@
   height: 220px;
   color: white;
   justify-content: space-around;
-
 }
 
 .footerFirst {
@@ -243,13 +228,11 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-
 }
 
 .footerDownAndLicense {
   display: flex;
   gap: 20px;
-
 }
 
 .footerFeatures {
@@ -272,7 +255,6 @@
   align-items: center;
   gap: 12px;
   border-radius: 10px;
-
 }
 
 .appLogo img {
@@ -282,13 +264,16 @@
 
 .appText h6 {
   margin-bottom: 0;
-
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .appText h3 {
   margin-top: 0;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .playStoreLink {
@@ -310,17 +295,20 @@
 
 .playStoreText h6 {
   margin-bottom: 0;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .playStoreText h3 {
   margin-top: 0;
-  user-select: none;
-
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .PageTitle {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .current_weather {
@@ -361,14 +349,13 @@
 .image_text_current {
   display: flex;
   justify-content: center;
-
   align-items: center;
 }
 
-.embededmap{
-  width:25px;
-  height:10px;
+.embededmap {
+  width: 25px;
+  height: 10px;
   margin-top: 30px;
   display: flex;
   justify-content: center;
-}
+}/*# sourceMappingURL=Home.module.css.map */

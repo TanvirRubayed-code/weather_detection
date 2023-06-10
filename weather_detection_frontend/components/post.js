@@ -10,30 +10,69 @@ import LikeDislike from './LikeDislike';
 import CommentContainer from './CommentContainer';
 
 import { BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsUpFill, BsHandThumbsDownFill, BsFillHandThumbsDownFill } from 'react-icons/bs';
+import axios from "axios";
 
 
 
 
 function Post({ title }) {
 
-  const [rating, setRating] = useState(4);
+  const [rating, setRating] = useState(0);
 
 
-  const [fullpost, setFullPost] = useState(null);
+  const [fullpost, setFullPost] = useState({});
 
- 
-
-  
-
-
-
-
-  const changeRating = (newRating) => {
-    setRating(newRating);
-    // console.log(newRating);
-  }
+  const [userid, setUserId] = useState('');
+  const [ratingDetails, setRatingDetails] = useState([]);
+  const [givenRating, setGivenRating] = useState(0);
+  const [change, setChange] = useState(false);
+  const [updater, setUpdater] = useState(false);
+  const [reloader, setReloader] = useState(false);
 
 
+
+  useEffect(() => {
+    const uid = sessionStorage.getItem("userid");
+    setUserId(uid);
+  }, [])
+
+
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/get-ratings`)
+      .then(res => setRatingDetails(res.data))
+  }, [reloader]);
+
+
+  let grt = 0;
+  let ratingFlag = false;
+  let addRating = false;
+  let previousSum = 0;
+  const rateDetail = [];
+  let ratingcount = 0;
+
+  ratingDetails.map(rating => {
+    if (rating._id == fullpost?._id) {
+      addRating = true;
+      rating.ratingdetails.map(gRating => {
+        previousSum += gRating.rating;
+        ratingcount++;
+
+        if (gRating._id == userid) {
+          grt = gRating.rating;
+          ratingFlag = true;
+        }
+        else {
+          ratingFlag = false;
+        }
+      })
+    }
+    else {
+      addRating = false;
+    }
+
+  })
 
   useEffect(() => {
     fetch(`http://localhost:4000/single-post?posttitle=${title}`)
@@ -41,9 +80,46 @@ function Post({ title }) {
       .then(data => setFullPost(data[0]));
   }, [title])
 
+  let averageRate;
+  averageRate = previousSum / ratingcount;
 
-  // console.log(fullpost);
-  // console.log(fullpost?._id);
+  const changeRating = (newRating) => {
+    setRating(newRating);
+    setReloader(!reloader);
+
+
+    setGivenRating(newRating);
+
+    const rating = {
+      _id: fullpost?._id,
+      posttitle: fullpost?.postTitle,
+      ratingdetails: [
+        {
+          _id: userid,
+          rating: newRating
+        }
+      ]
+
+    }
+
+    if (addRating && !ratingFlag && !updater) {
+      setUpdater(true);
+      axios.post('http://localhost:4000/update-ratings', rating)
+        .then(res => console.log(res))
+    }
+    else if (ratingFlag || change || updater) {
+      axios.post('http://localhost:4000/update-previous-rating', rating)
+        .then(res => console.log(res))
+    }
+
+    else {
+      setChange(true);
+      axios.post(`http://localhost:4000/post-ratings`, rating)
+        .then(res => console.log(res))
+
+    }
+
+  }
 
 
   return (
@@ -152,26 +228,36 @@ function Post({ title }) {
 
       <div className="flex">
 
-        
+
         <CommentContainer postID={fullpost?._id}></CommentContainer>
 
         <div className="flex flex-col rounded-lg bg-white mt-10 items-center justify-center content-center h-80 w-1/2 mx-auto">
 
-          <LikeDislike postID={fullpost?._id}></LikeDislike> 
-          
+          <LikeDislike postID={fullpost?._id}></LikeDislike>
+
 
           <div className="mt-4">
             <h2 className=" text-4xl text-center py-3">Rate this post</h2>
-            <StarRatings
-              rating={rating}
-              starRatedColor="darkblue"
-              starDimension="40px"
-              starSpacing="15px"
-              changeRating={changeRating}
-              numberOfStars={5}
-              name='rating'
-            />
-            <h3 className="text-center py-4">Average ratings: 3.4</h3>
+            {
+              givenRating > 0 ? <StarRatings
+                rating={givenRating}
+                starRatedColor="darkblue"
+                starDimension="40px"
+                starSpacing="15px"
+                changeRating={changeRating}
+                numberOfStars={5}
+                name='rating'
+              /> : <StarRatings
+                rating={grt}
+                starRatedColor="darkblue"
+                starDimension="40px"
+                starSpacing="15px"
+                changeRating={changeRating}
+                numberOfStars={5}
+                name='rating'
+              />
+            }
+            <h3 className="text-center py-4">Average ratings: {averageRate || 0}</h3>
           </div>
 
         </div>
@@ -180,9 +266,7 @@ function Post({ title }) {
       </div>
 
 
-      <div className="flex justify-center mt-20">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/AGcTCvn-a6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
+
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 import { useEffect, useState } from "react"
 
-
 const Login = () => {
   const router = useRouter();
   const [noUser, setNoUser] = useState();
@@ -22,7 +21,6 @@ const Login = () => {
     const item = sessionStorage.getItem('userid')
     if (localuserId || item) {
       router.push('/')
-      window.location.reload(true);
     }
   }, [])
 
@@ -35,7 +33,6 @@ const Login = () => {
       e.target.style.outline = "0px solid red";
     }
   }
-
 
   const handleCheckbox = (e) => {
     setSavePassFlag(e.target.checked);
@@ -103,6 +100,25 @@ const Login = () => {
     }
 
 
+
+
+
+    axios.get(`http://localhost:4000/user_login/${login_info.userName}`)
+      .then(res => {
+        if (res.data != null) {
+          setNoUser(false);
+          if (res.data.password == login_info.password) {
+            alert("Logged in successfully")
+            router.push("./")
+          }
+          else {
+            alert("Password doesn't match")
+          }
+        } else {
+          alert("No such user")
+          setNoUser(true);
+        }
+      });
 
 
   }
