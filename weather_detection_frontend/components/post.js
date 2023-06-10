@@ -14,7 +14,7 @@ import axios from "axios";
 
 function Post({ title }) {
 
-  const [rating, setRating] = useState(4);
+  const [rating, setRating] = useState(0);
 
   const [likeCount, setLikeCount] = useState(50);
   const [dislikeCount, setDislikeCount] = useState(25);
@@ -27,6 +27,8 @@ function Post({ title }) {
   const [ratingDetails, setRatingDetails] = useState([]);
   const [givenRating, setGivenRating] = useState(0);
   const [change, setChange] = useState(false);
+  const [updater, setUpdater] = useState(false);
+  const [reloader, setReloader] = useState(false);
 
 
 
@@ -41,28 +43,39 @@ function Post({ title }) {
   useEffect(() => {
     axios.get(`http://localhost:4000/get-ratings`)
       .then(res => setRatingDetails(res.data))
-  }, []);
+  }, [reloader]);
 
 
   let grt = 0;
   let ratingFlag = false;
   let addRating = false;
+  let previousSum = 0;
   const rateDetail = [];
-  ratingDetails.map(rating => {
+  let ratingcount = 0;
 
+  ratingDetails.map(rating => {
     if (rating._id == fullpost?._id) {
       addRating = true;
       rating.ratingdetails.map(gRating => {
-
+        previousSum += gRating.rating;
+        ratingcount++;
 
         if (gRating._id == userid) {
           grt = gRating.rating;
           ratingFlag = true;
         }
+        else {
+          ratingFlag = false;
+        }
       })
+    }
+    else {
+      addRating = false;
     }
 
   })
+
+
 
 
 
@@ -120,9 +133,12 @@ function Post({ title }) {
       .then(data => setFullPost(data[0]));
   }, [title])
 
+  let averageRate = previousSum / ratingcount;
 
   const changeRating = (newRating) => {
     setRating(newRating);
+    setReloader(!reloader);
+
 
     setGivenRating(newRating);
 
@@ -138,17 +154,16 @@ function Post({ title }) {
 
     }
 
-    if (ratingFlag || change) {
-
-      axios.post('http://localhost:4000/update-previous-rating', rating)
-        .then(res => console.log(res))
-    }
-    else if (addRating) {
-      setChange(true);
-      rateDetail.push({ _id: userid, rating: newRating });
+    if (addRating && !ratingFlag && !updater) {
+      setUpdater(true);
       axios.post('http://localhost:4000/update-ratings', rating)
         .then(res => console.log(res))
     }
+    else if (ratingFlag || change || updater) {
+      axios.post('http://localhost:4000/update-previous-rating', rating)
+        .then(res => console.log(res))
+    }
+
     else {
       setChange(true);
       axios.post(`http://localhost:4000/post-ratings`, rating)
@@ -161,7 +176,7 @@ function Post({ title }) {
 
 
 
-  // console.log(fullpost);
+
 
 
   return (
@@ -389,7 +404,7 @@ function Post({ title }) {
                 name='rating'
               />
             }
-            <h3 className="text-center py-4">Average ratings: 3.4</h3>
+            <h3 className="text-center py-4">Average ratings: {averageRate}</h3>
           </div>
 
         </div>

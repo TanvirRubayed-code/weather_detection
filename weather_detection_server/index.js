@@ -26,6 +26,65 @@ async function server() {
         const weatherCollection = database.collection("weather")
         const userCollection = database.collection("users")
         const postCollection = database.collection("posts");
+        const ratingCollection = database.collection("ratings");
+
+        // ---------------rating start again ----------
+        app.get("/get-ratings", async (req, res) => {
+
+            const result = await ratingCollection.find({}).toArray();
+            res.send(result);
+        })
+
+
+        app.post("/post-ratings", async (req, res) => {
+            const ratingdetails = req.body;
+
+            const result = await ratingCollection.insertOne(ratingdetails);
+
+            res.send("rating done");
+
+        })
+
+        app.post("/update-previous-rating", async (req, res) => {
+            const rating = req.body;
+
+            const postId = rating._id;
+            const userId = rating.ratingdetails[0]._id
+            const chgrate = rating.ratingdetails[0].rating
+            // console.log(userId);
+            const result = await ratingCollection.updateOne({
+                _id: postId, "ratingdetails._id": userId
+            }, {
+                $set: {
+                    "ratingdetails.$.rating": chgrate
+                }
+
+            })
+            res.send("rating updated")
+        })
+
+
+        app.post("/update-ratings", async (req, res) => {
+            const rating = req.body;
+            const addrating = rating.ratingdetails[0]
+            const postId = rating._id;
+            const result = await ratingCollection.updateOne({
+                _id: postId
+            }, {
+                $push: {
+                    ratingdetails: addrating
+                }
+
+            })
+            res.send("new rating added")
+        })
+
+
+
+
+
+
+
 
 
         // ----------------------users post submit to database -------------------
@@ -33,7 +92,6 @@ async function server() {
         app.post('/post-data', async (req, res) => {
 
             const fullpost = req.body
-            // console.log(req.body);
             if (fullpost.postTitle != "") {
                 const result = await postCollection.insertOne(fullpost);
                 res.send("success")
@@ -71,7 +129,6 @@ async function server() {
 
         app.get('/single-post', async (req, res) => {
             const title = req.query.posttitle;
-            console.log(title);
             const result = await postCollection.find({ "postTitle": `${title}` }).toArray();
             res.json(result);
         })
