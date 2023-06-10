@@ -1,0 +1,137 @@
+// .footer {
+//     background-color: #f2f2f2;
+//     padding: 20px;
+  
+//     .container {
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       background-color: red;
+//     }
+  
+//     .footerContent {
+//       display: flex;
+//       align-items: center;
+//     }
+  
+//     p {
+//       margin-bottom: 0;
+//     }
+  
+//     .footerLinks {
+//       list-style: none;
+//       margin: 0;
+//       padding: 0;
+  
+//       li {
+//         display: inline-block;
+//         margin-right: 10px;
+  
+//         a {
+//           color: #333;
+//           text-decoration: none;
+  
+//           &:hover {
+//             text-decoration: underline;
+//           }
+//         }
+//       }
+//     }
+//   }
+  
+
+// Variables
+$primary-color: white;
+$footer-background-color: black;
+
+// Mixin for media query
+@mixin responsive-text {
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+// Footer styles
+.footer {
+  background-color: $footer-background-color;
+  padding: 20px;
+  height: 200px;
+
+  .container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .white{
+    position: absolute;
+    color: white;
+    text-align: center;
+    margin-left: 54%;
+  }
+
+  .white1{
+    position: absolute;
+    color: white;
+    margin-left: 72.5%;
+  }
+
+  .white2{
+    width: 200px;
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .embededmap {
+    margin-left:40%;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    // margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  p {
+    margin-bottom: 0;
+    color: $primary-color;
+    font-size: 16px;
+    @include responsive-text;
+  }
+
+  .footerLinks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: large;
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      // Conditionally change color based on a variable
+      @if $primary-color == #333 {
+        color: white;
+      } @else {
+        color: blue;
+      }
+    }
+    .social {
+        color: white;
+    }
+  }
+}
