@@ -133,7 +133,8 @@ function Post({ title }) {
       .then(data => setFullPost(data[0]));
   }, [title])
 
-  let averageRate = previousSum / ratingcount;
+  let averageRate;
+  averageRate = previousSum / ratingcount;
 
   const changeRating = (newRating) => {
     setRating(newRating);
@@ -404,7 +405,7 @@ function Post({ title }) {
                 name='rating'
               />
             }
-            <h3 className="text-center py-4">Average ratings: {averageRate}</h3>
+            <h3 className="text-center py-4">Average ratings: {averageRate || 0}</h3>
           </div>
 
         </div>
