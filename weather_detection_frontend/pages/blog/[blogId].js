@@ -6,9 +6,10 @@ function singleBlog() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const blogId = router.query.blogId;
+
   return (
     <>
-      <Post></Post>
+      <Post title={blogId}></Post>
     </>
   );
 }

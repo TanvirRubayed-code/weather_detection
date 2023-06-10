@@ -80,6 +80,9 @@
     margin: 5px 0;
     font-size: 16px;
 }
+.textbox a {
+    margin: 5px;
+}
 .textbox p {
     font-size: 13px;
 }
@@ -174,19 +177,20 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+
   }
   
-  .pagination a {
+  .pagination h3 {
     color: black;
     background-color: white;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    cursor: pointer;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
   }
   
-  .pagination a.active {
+  .pagination h3.active {
     background-color: #4CAF50;
     color: white;
   }

@@ -23,11 +23,11 @@ function ProfileInfo() {
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
     return (
-        <div className="px-36 py-12 w-full">
+        <div className="px-36 py-12 w-full bg-gray-200">
 
 
-            <div className=" rounded shadow-xl bg-gray-100">
-                <div className="p-6 text-3xl">Edit Profile</div>
+            <div className=" rounded-lg shadow-2xl bg-white">
+                <div className="py-6 px-10 text-3xl shadow">Edit Profile</div>
                 <div className=" flex flex-col items-center px-32 py-16">
 
                     <div className="relative">
@@ -133,18 +133,7 @@ function ProfileInfo() {
                                 <input type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" defaultValue="Bangladesh" required />
                             </div>
                         </div>
-                        <div>
-                            <div className="mt-5">
-                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Current Password</label>
-                                <input type="password" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" defaultValue="" required />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="mt-5">
-                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">New Password</label>
-                                <input type="password" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" defaultValue="" required />
-                            </div>
-                        </div>
+
 
                         <div className=" flex justify-between mt-5">
                             <div className="mr-5">

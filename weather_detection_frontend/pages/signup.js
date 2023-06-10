@@ -13,7 +13,6 @@ const Register = () => {
   const [userNameTyped, setUserNameTyped] = useState("");
   const [phoneNoTyped, setPhoneNoTyped] = useState();
   const [passwordTyped, setPasswordTyped] = useState();
-  
   const [noUserName, setNoUserName] = useState();
   const [userExists, setUserExits] = useState();
   const [invalidEmail, setInvalidEmail] = useState();
@@ -38,7 +37,10 @@ const Register = () => {
         setNoUserName(false);
         e.target.style.border = "0.5px solid red";
         e.target.style.outline = "0px solid red";
-      } else if(typedUserName == "") {
+
+
+      } else if (typedUserName == "") {
+
         setNoUserName(true);
         setUserExits(false);
         e.target.style.border = "0.5px solid red";
@@ -61,7 +63,9 @@ const Register = () => {
       setInvalidEmail(true);
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
-    } else if(typedEmail == "") {
+
+    } else if (typedEmail == "") {
+
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
     } else {
@@ -79,7 +83,8 @@ const Register = () => {
       setInvalidPhoneNo(true);
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
-    } else if(typedPhoneNo == "") {
+    } else if (typedPhoneNo == "") {
+
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
     } else {
@@ -97,7 +102,9 @@ const Register = () => {
       setWeakPassword(true);
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
-    } else if(typedPassword == "") {
+
+    } else if (typedPassword == "") {
+
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
     } else {
@@ -115,7 +122,9 @@ const Register = () => {
       setPasswordNotMatched(true);
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
-    } else if(typedConfirmPassword == "") {
+
+    } else if (typedConfirmPassword == "") {
+
       e.target.style.border = "0.5px solid red";
       e.target.style.outline = "0px solid red";
     } else {
@@ -129,28 +138,32 @@ const Register = () => {
   const hangleSignUpData = (e) => {
     e.preventDefault();
 
-    if(userNameTyped == "") {
+
+    if (userNameTyped == "") {
+
       setNoUserName(true);
     } else {
       setNoUserName(false);
     }
-    if(invalidEmail != false) {
+
+    if (invalidEmail != false) {
       setInvalidEmail(true);
     }
-    if(invalidPhoneNo != false) {
+    if (invalidPhoneNo != false) {
       setInvalidPhoneNo(true);
     }
-    if(weakPassword != false) {
+    if (weakPassword != false) {
       setWeakPassword(true);
     }
-    if(passwordNotMatched != false) {
+    if (passwordNotMatched != false) {
       setPasswordNotMatched(true);
     }
 
-    if(userExists || invalidEmail || invalidPhoneNo || weakPassword || passwordNotMatched) {
+    if (userExists || invalidEmail || invalidPhoneNo || weakPassword || passwordNotMatched) {
       return;
     }
-    
+
+
 
 
     const inputs = document.getElementsByTagName("input");
@@ -196,7 +209,7 @@ const Register = () => {
     <>
       <div className={styles.register_form}>
         <form onSubmit={hangleSignUpData}>
-          <h1>Register</h1>
+          <h1>Sign Up</h1>
           <div className={styles.content}>
             <div className={styles.input_field}>
               <input id='username' name="userName" placeholder="Username" onChange={handleUserName} />
@@ -270,16 +283,10 @@ const Register = () => {
               </h5>
             </div>
 
-            <div className={styles.legacy}>
-              <p>
-                {" "}
-                <input type="checkbox"></input> By creating an account you agree
-                to our <a href="#">Terms & Privacy</a>.
-              </p>
-            </div>
+
           </div>
           <div className={styles.action}>
-            <button type="submit">Register</button>
+            <button type="submit">Signup</button>
           </div>
         </form>
       </div>

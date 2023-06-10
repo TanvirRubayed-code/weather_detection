@@ -1,31 +1,60 @@
-import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import React, { useEffect, useState } from "react";
 import logo from "../image/cloudy2.png";
 import Link from "next/link";
-import Image from "next/image";
-import ProfileInfo from "./ProfileInfo";
 import { CgProfile } from "react-icons/cg"
 import { IoIosLogOut } from "react-icons/io"
 import { useRouter } from 'next/router';
 
-let login = true;
+
+
+let login = false;
 
 const Navigation = () => {
 
+
+
+
   const [userIconClick, setUserIconClick] = useState(false);
-  const [loginState, setLoginState] = useState(true)
+  const [loginState, setLoginState] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const router = useRouter();
+
+
+  useEffect(() => {
+    const localuserId = localStorage.getItem("userid");
+    if (localuserId) {
+      sessionStorage.setItem("userid", localuserId);
+    }
+    const item = sessionStorage.getItem('userid')
+    if (item) {
+      setLoggedIn(true);
+      setLoginState(true);
+    }
+  }, [])
 
   const userInfoClick = () => {
     console.log("clicked");
   }
+
+  const LogOutHandle = () => {
+    setUserIconClick(!userIconClick);
+    router.push('/');
+    window.location.reload(true);
+    sessionStorage.removeItem("userid");
+    localStorage.removeItem("userid");
+  }
+
 
   return (
     <>
 
 
       <nav class=" bg-navbar px-10 sm:px-4 fixed w-full z-20 top-0 left-0 ">
+
+
+
+
 
         <div className="flex h-20 ml-10">
           <div className="flex items-center">
@@ -38,8 +67,7 @@ const Navigation = () => {
 
             {
               loginState ? <div class="flex md:order-2">
-                <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-gray-700 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="Bordered avatar"></img>
-
+                <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-yellow-400 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="Bordered avatar"></img>
 
                 {
                   userIconClick ?
@@ -50,7 +78,7 @@ const Navigation = () => {
                           <Link onClick={() => setUserIconClick(!userIconClick)} href="/user" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><CgProfile /><div className="ml-2">Profile</div></div></Link>
                         </li>
                         <li>
-                          <a onClick={() => setUserIconClick(!userIconClick)} href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><IoIosLogOut /><div className="ml-2">Logout</div></div></a>
+                          <a onClick={LogOutHandle} href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"><div className="flex items-center"><IoIosLogOut /><div className="ml-2">Logout</div></div></a>
                         </li>
 
                       </ul>
@@ -69,14 +97,16 @@ const Navigation = () => {
 
 
 
+
+
             <div class=" bg-navbar hidden md:flex md:w-auto md:order-1" >
-              <ul class="flex  flex-col  border border-gray-100 rounded-lg bg-gray-50  md:flex-row md:mt-0 md:text-sm md:font-medium md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <ul class="flex  flex-col  border border-gray-100 rounded-lg   md:flex-row md:mt-0 md:text-sm md:font-medium md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
 
                 <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent ">
-                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" href="/">
+                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/">
                     {
-                      router.pathname == "/" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
+                      router.pathname == "/" ? <div className=" border-b-4  border-b-yellow-400 py-7 px-2">
                         Home
                       </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Home</div>
                     }
@@ -85,7 +115,7 @@ const Navigation = () => {
 
 
                 <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
-                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" href="/blog">
+                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/blog">
                     {
                       router.pathname == "/blog" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
                         Blogs
@@ -94,18 +124,40 @@ const Navigation = () => {
                   </Link>
 
                 </li>
-                <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
-                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" href="/">Information</Link>
 
-                </li>
+
+
+
+
+
+
                 <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
-                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" href="/classify">
+                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/dropdown">
                     {
-                      router.pathname == "/classify" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
-                        Classify
-                      </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
+                      router.pathname == "/dropdown" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
+                        Dropdown
+                      </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Dropdown</div>
                     }
                   </Link>
+
+                </li>
+
+
+                <li className="flex flex-col items-center justify-center mr-4 px-4 h-20 border-b-4 border-b-transparent">
+                  {
+                    loggedIn == true ? <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/classify">
+                      {
+                        router.pathname == "/classify" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
+                          Classify
+                        </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
+                      }
+                    </Link> :
+                      <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/login">
+
+                        <div className=" border-b-4 border-b-transparent py-7 px-2">Classify</div>
+
+                      </Link>
+                  }
 
                 </li>
               </ul>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import summer from "../image/Summer.jpg";
 import { MdLocationOn } from "react-icons/md"
@@ -8,15 +8,25 @@ import ReactStars from "react-rating-stars-component";
 import styles from "../styles/Blog.module.css";
 import { FaBrain } from "react-icons/fa"
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
 function ProfileInfo() {
 
+    const router = useRouter();
+
+    useEffect(() => {
+        const item = sessionStorage.getItem('userid')
+        if (!item) {
+            router.push('/')
+        }
+    }, [])
+
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
     return (
-        <div className="px-36 py-12 w-full">
-            <div className="flex rounded shadow-xl bg-gray-100 p-10">
+        <div className="px-36 bg-gray-200 py-12 w-full">
+            <div className="flex rounded-lg shadow-xl bg-white p-10">
 
                 <div className="w-1/3">
 
@@ -133,23 +143,12 @@ function ProfileInfo() {
                         </div>
                     </div>
                     <div className="text-blue-500 text-sm font-semibold">Student</div>
-                    <div className="text-sm mt-4 text-gray-700">Ratings</div>
-                    <div className="flex items-center ">
-                        <div className="font-semibold">{ratingvlaue}</div>
-                        <div className="flex items-center">
-                            <div className="pl-2">
-                                <ReactStars
-                                    count={5}
-                                    value={ratingvlaue}
-                                    activeColor="#ffd700"
-                                    edit={false}
-                                />
-                            </div>
-                            <div className="ml-20">
-                                <Link href="/user/edit">
-                                    <FaEdit size={22} color="blue" className="hover:cursor-pointer"></FaEdit>
-                                </Link>
-                            </div>
+                    <div className="flex items-center">
+
+                        <div className="mt-4">
+                            <Link href="/user/edit">
+                                <div className="flex bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded">Edit profile <FaEdit size={22} color="black" className="ml-3"></FaEdit></div>
+                            </Link>
                         </div>
 
                     </div>
