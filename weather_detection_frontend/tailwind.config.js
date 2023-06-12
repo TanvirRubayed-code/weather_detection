@@ -36,7 +36,8 @@ module.exports = {
       'yellow-400': '#facc15',
       'red-800': '#991b1b',
       'cyan-400': '#5eead4',
-      'edit-con-bg': '#0464FC'
+      'edit-con-bg': '#0464FC',
+      'tred': '#dc2626',
     },
     extend: {
       blur: {

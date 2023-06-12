@@ -34,7 +34,6 @@
      border: 1px solid rgba(204, 204, 204, 0);
      transition: border .1s ease-in;
      overflow: hidden;
-
  }
 
  .bestCard:hover {

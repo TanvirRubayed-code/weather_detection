@@ -15,43 +15,36 @@ export default function IndexPage() {
 
   return (
     <div className="page" ref={root}>
-         {/* <h1>Home Page</h1> 
-      <div className="box">404</div> */}
-      {/* <p>
-        <Link href="/about">About Page</Link>
-      </p> */}
-   
 
+      <div class="page_404">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="col-sm-10 col-sm-offset-1  text-center">
+                <div class="four_zero_four_bg">
+                  <h1 class="text-center ">404</h1>
 
-<div class="page_404">
-	<div class="container">
-		<div class="row">	
-		<div class="col-sm-12 ">
-		<div class="col-sm-10 col-sm-offset-1  text-center">
-		<div class="four_zero_four_bg">
-			<h1 class="text-center ">404</h1>
+                </div>
 
-		</div>
-		
-		<div class="contant_box_404">
-		<h3 class="h2">
-		Look like you're lost
-		</h3>
-		
-		<p>the page you are looking for not avaible!</p>
-		
-		<a href="" class="link_404">Go to Home</a>
-	</div>
-		</div>
-		</div>
-		</div>
-	</div>
-</div>
+                <div class="contant_box_404">
+                  <h3 class="h2">
+                    Look like you're lost
+                  </h3>
+
+                  <p>the page you are looking for not avaible!</p>
+
+                  <Link href="/" class="link_404">Go to Home</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
 
-       <style jsx global>{`
+      <style jsx global>{`
         .page {
           font-family: Avenir, Helvetica, Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
@@ -124,7 +117,7 @@ export default function IndexPage() {
         margin: 0 auto;
       }
 
-      `}</style> 
+      `}</style>
     </div>
   );
 }

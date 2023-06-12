@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import Image from "next/image";
 import summer from "../image/Summer.jpg";
 import { MdLocationOn } from "react-icons/md"
@@ -9,14 +9,16 @@ import styles from "../styles/Blog.module.css";
 import { FaBrain } from "react-icons/fa"
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 
 function ProfileInfo() {
 
     const router = useRouter();
-
+    const [userdetails, setuserDetails] = useState({});
+    let item;
     useEffect(() => {
-        const item = sessionStorage.getItem('userid')
+        item = sessionStorage.getItem('userid')
         if (!item) {
             router.push('/')
         }
@@ -24,17 +26,22 @@ function ProfileInfo() {
 
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
+    useEffect(() => {
+
+        axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
+            setuserDetails(res.data[0]);
+        })
+
+    }, [])
+
+
+
     return (
         <div className="px-36 bg-gray-200 py-12 w-full">
             <div className="flex rounded-lg shadow-xl bg-white p-10">
 
                 <div className="w-1/3">
-
-                    <Image
-                        className="rounded-full ring-2 ring-blue-500 h-60 w-60 hover:opacity-90 "
-                        src={summer}
-                        alt="Picture of the author"
-                    />
+                    <img className="rounded-full ring-2 ring-blue-500 h-60 w-60 hover:opacity-90 " src={userdetails.imageurl}></img>
 
 
                     <div className="flex">
@@ -45,11 +52,11 @@ function ProfileInfo() {
                         <div className="w-full ml-2 border-b-2 border-b-gray-400"></div>
                     </div>
                     <div className="mt-4">
-                        Branding<br />
                         UI/UX <br />
                         Web-design<br />
-                        Packaging<br />
-                        Print & Editorial <br />
+                        Mobile Application development<br />
+                        Graphics design<br />
+                        Video Editing
                     </div>
 
                     <div className="flex">
@@ -136,13 +143,13 @@ function ProfileInfo() {
                 </div>
                 <div className="ml-20 w-2/3">
                     <div className="flex items-center">
-                        <div className=" text-xl m-0 ">Tanvir Rubayed Tauhid</div>
+                        <div className=" text-xl m-0 ">{userdetails.userName}</div>
                         <div className="ml-5 flex items-center justify-center">
                             <MdLocationOn color="#EA4335"></MdLocationOn>
-                            <div className="ml-1 text-sm text-gray-700">Bangladesh</div>
+                            <div className="ml-1 text-sm text-gray-700">{userdetails.country}</div>
                         </div>
                     </div>
-                    <div className="text-blue-500 text-sm font-semibold">Student</div>
+                    <div className="text-blue-500 text-sm font-semibold">{userdetails.profession}</div>
                     <div className="flex items-center">
 
                         <div className="mt-4">
@@ -168,24 +175,20 @@ function ProfileInfo() {
                                 <tr>
                                     <td className="">Phone </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">01740214137</td>
+                                    <td className="pl-8 text-tahiti">{userdetails.phone}</td>
                                 </tr>
 
                                 <tr>
                                     <td className="py-6">Address </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8">525 E 68th street <br /> Dhaka, Bangladesh</td>
+                                    <td className="pl-8">{userdetails.address}</td>
                                 </tr>
                                 <tr>
                                     <td>E-mail </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">tanvirrubayedtauhid@gmail.com</td>
+                                    <td className="pl-8 text-tahiti">{userdetails.email}</td>
                                 </tr>
-                                <tr>
-                                    <td className="py-6">Site </td>
-                                    <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">https://www.facebook.com/tanvir.rubayed.5/</td>
-                                </tr>
+
                             </tbody>
                         </table>
 
@@ -200,12 +203,12 @@ function ProfileInfo() {
                                 <tr>
                                     <td className="">Birthday</td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">February 24, 1998</td>
+                                    <td className="pl-8 text-tahiti">{userdetails.birthday}</td>
                                 </tr>
                                 <tr>
                                     <td className="py-6">Gender </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8">Male</td>
+                                    <td className="pl-8">{userdetails.gender}</td>
                                 </tr>
                             </tbody>
 
@@ -227,18 +230,14 @@ function ProfileInfo() {
                     <div className="text-md mt-6">
                         <table>
                             <tbody>
-                                <tr>
+                                <tr className="">
                                     <td className="">Toal image classification</td>
                                     <td className="pl-4">: </td>
                                     <td className="pl-8 text-tahiti">28</td>
                                 </tr>
-                                <tr>
-                                    <td className="py-6">Average ratings </td>
-                                    <td className="pl-4">: </td>
-                                    <td className="pl-8">4.5</td>
-                                </tr>
-                                <tr>
-                                    <td className="">Average confidence </td>
+
+                                <tr className="">
+                                    <td className="py-6">Average confidence </td>
                                     <td className="pl-4">: </td>
                                     <td className="pl-8">0.04342</td>
                                 </tr>

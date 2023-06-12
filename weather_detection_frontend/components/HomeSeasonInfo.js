@@ -18,8 +18,8 @@ const HomeSeasonInfo = () => {
                 <h1>Weather Information</h1>
             </div>
             <div className={styles.HomeSeasonCardContainer}>
-                
-                <HomeSeasonCard title="Summer" image={product1.src} paragraph="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia corporis consequatur neque aliquam! Dicta quasi totam, harum sunt minima dolore?"></HomeSeasonCard>
+
+                <HomeSeasonCard title="Summer" image={product1.src} paragraph="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia corporir sit amet consectetur adipisicing elit. Quia corporir sit amet consectetur adipisicing elit. Quia corporir sit amet consectetur adipisicing elit. Quia corporir sit amet consectetur adipisicing elit. Quia corporis consequatur neque aliquam! Dicta quasi totam, harum sunt minima dolore?"></HomeSeasonCard>
                 <HomeSeasonCard title="Rainy" image={product2.src} paragraph="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia corporis consequatur neque aliquam! Dicta quasi totam, harum sunt minima dolore?"></HomeSeasonCard>
                 <HomeSeasonCard title="Autumn" image={product3.src} paragraph="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia corporis consequatur neque aliquam! Dicta quasi totam, harum sunt minima dolore?"></HomeSeasonCard>
                 <HomeSeasonCard title="Late Autumn" image={product4.src} paragraph="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia corporis consequatur neque aliquam! Dicta quasi totam, harum sunt minima dolore?"></HomeSeasonCard>

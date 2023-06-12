@@ -37,8 +37,16 @@ async function server() {
 
         app.get('/users', async (req, res) => {
             const result = await userCollection.find({}).toArray();
-            console.log(result)
             res.json(result);
+        })
+        app.get("/userdata/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = {
+                _id: ObjectId(id)
+            };
+            const result = await userCollection.find(filter).toArray();
+            res.send(result);
+
         })
         app.get('/users/:userName', async (req, res) => {
             const userName = req.params.userName;
@@ -78,12 +86,6 @@ async function server() {
         //         console.log(e);
         //     }
         // });
-
-
-        app.get("/posts", async (req, res) => {
-            const { post_key } = req.query;
-            console.log(req.query)
-        })
 
 
 
@@ -299,6 +301,36 @@ async function server() {
             const finalData = req.body;
             const result = await userCollection.insertOne(finalData);
             res.json(result)
+        })
+
+        app.post("/update-userinfo", async (req, res) => {
+            const finalData = req.body;
+            const uid = finalData.uid;
+            try {
+                await userCollection.updateMany({
+                    _id: ObjectId(uid)
+                }, {
+                    $set: {
+                        "userName": finalData.userName,
+                        "email": finalData.email,
+                        "phone": finalData.phone,
+                        "profession": finalData.profession,
+                        "gender": finalData.gender,
+                        "birthday": finalData.birthday,
+                        "address": finalData.address,
+                        "city": finalData.city,
+                        "state": finalData.state,
+                        "zip": finalData.zip,
+                        "country": finalData.country,
+                        "imageurl": finalData.imageurl,
+                    }
+                }
+                )
+            }
+            catch (e) {
+                console.log("error", e);
+            }
+            res.send("user details updated")
         })
 
 

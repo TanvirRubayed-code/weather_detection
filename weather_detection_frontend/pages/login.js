@@ -54,24 +54,6 @@ const Login = () => {
 
     }
 
-
-    axios.get(`http://localhost:4000/user_login/${login_info.userName}`)
-      .then(res => {
-        if (res.data != null) {
-          setNoUser(false);
-          if (res.data.password == login_info.password) {
-            alert("Logged in successfully")
-            router.push("./")
-          }
-          else {
-            alert("Password doesn't match")
-          }
-        } else {
-          alert("No such user")
-          setNoUser(true);
-        }
-      });
-
     if (login_info.userName == "" || login_info.password == "") {
       setShowAlert(true);
     }
@@ -98,28 +80,6 @@ const Login = () => {
           }
         });
     }
-
-
-
-
-
-    axios.get(`http://localhost:4000/user_login/${login_info.userName}`)
-      .then(res => {
-        if (res.data != null) {
-          setNoUser(false);
-          if (res.data.password == login_info.password) {
-            alert("Logged in successfully")
-            router.push("./")
-          }
-          else {
-            alert("Password doesn't match")
-          }
-        } else {
-          alert("No such user")
-          setNoUser(true);
-        }
-      });
-
 
   }
 
@@ -155,7 +115,7 @@ const Login = () => {
             </div>
             <div class="flex items-center mt-2 mb-4">
               <input onClick={handleCheckbox} id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-              <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-600 dark:text-gray-300">Save password</label>
+              <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-600 dark:text-gray-300">Remember me!</label>
             </div>
           </div>
           <div className={styles.action}>

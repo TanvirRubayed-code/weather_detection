@@ -37,37 +37,22 @@ const Register = () => {
       const userName = user.userName;
       if (userName == typedUserName) {
         setUserExits(true);
-        setNoUserName(false);
-
         e.target.style.border = "0.5px solid red";
         e.target.style.outline = "0px solid red";
-
-
-      } else if (typedUserName == "") {
-
-        setNoUserName(true);
-        setUserExits(false);
-        e.target.style.border = "0.5px solid red";
-        e.target.style.outline = "0px solid red";
-      } else {
-        setNoUserName(false);
-        setUserExits(false);
-        e.target.style.border = "0.5px solid green";
-        e.target.style.outline = "0px solid green";
-
         break;
-
       }
-      setUserExits(false);
+      setUserExits(false)
+      setNoUserName(false);
     }
-    if (userExists) {
-      e.target.style.border = "0.5px solid red";
-      e.target.style.outline = "0px solid red";
+
+    if (!userExists) {
+      e.target.style.border = "0.5px solid green";
+      e.target.style.outline = "0px solid green";
     }
+
 
     setUserNameTyped(typedUserName);
   };
-
   const handleEmail = (e) => {
     const typedEmail = e.target.value;
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -179,10 +164,6 @@ const Register = () => {
       setPasswordNotMatched(true);
     }
 
-    if (userExists || invalidEmail || invalidPhoneNo || weakPassword || passwordNotMatched) {
-      return;
-    }
-
 
     const inputs = document.getElementsByTagName("input");
 
@@ -192,26 +173,27 @@ const Register = () => {
       const input_name = input.name;
       const input_value = input.value;
 
-      if (input_value == "") {
-        //alert(input_name + " is empty");
-        return;
-      }
-
       info[input_name] = input_value;
-    }
-
-
-    if (info.password != info.confirmPassword) {
-      alert("Passwords aren't matched")
-      return;
     }
 
     const finalValue = {
       userName: info.userName,
       email: info.email,
       password: info.password,
-      phone: info.phone
+      phone: info.phone,
+      profession: "",
+      gender: "",
+      birthday: "",
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      country: "",
+      imageurl: ""
     };
+
+
+    console.log("submit");
 
     axios.post(`http://localhost:4000/users`, finalValue)
       .then(res => {
@@ -221,6 +203,7 @@ const Register = () => {
           window.location.reload(true);
         }
       })
+
   };
 
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CgProfile } from "react-icons/cg"
 import { IoIosLogOut } from "react-icons/io"
 import { useRouter } from 'next/router';
-
+import axios from "axios";
 
 
 let login = false;
@@ -17,7 +17,7 @@ const Navigation = () => {
   const [userIconClick, setUserIconClick] = useState(false);
   const [loginState, setLoginState] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [navpic, setNavpic] = useState("");
   const router = useRouter();
 
 
@@ -31,6 +31,12 @@ const Navigation = () => {
       setLoggedIn(true);
       setLoginState(true);
     }
+
+    axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
+      setNavpic(res.data[0].imageurl)
+    })
+
+
   }, [])
 
   const userInfoClick = () => {
@@ -67,7 +73,10 @@ const Navigation = () => {
 
             {
               loginState ? <div class="flex md:order-2">
-                <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-yellow-400 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="Bordered avatar"></img>
+                {
+                  navpic == "" ? <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-yellow-400 cursor-pointer transition-all " src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png" alt="avatar"></img> :
+                    <img onClick={() => setUserIconClick(!userIconClick)} class="ml-10 w-12 h-12 p-1 rounded-full ring-2 ring-blue-800 dark:ring-gray-500 hover:ring-yellow-400 cursor-pointer transition-all " src={navpic} alt="avatar"></img>
+                }
 
                 {
                   userIconClick ?

@@ -77,18 +77,7 @@ function PostBlog() {
                 }
             });
 
-        // fetch("http://localhost:4000/post-data", {
-        //     method: "POST",
-        //     crossDomain: true,
-        //     headers: {
-        //         "Content-type": "application/json",
-        //         Accept: "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //     },
-        //     body: JSON.stringify({
-        //         data: submit
-        //     })
-        // }).then((res) => res.json()).then((data) => console.log(data))
+
     }
 
 
