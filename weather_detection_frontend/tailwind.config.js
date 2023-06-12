@@ -38,6 +38,9 @@ module.exports = {
       'cyan-400': '#5eead4',
       'edit-con-bg': '#0464FC',
       'tred': '#dc2626',
+      'skyblue': '#d9f4fff4',
+      'skyblue-500': '#99e4ff',
+      'skyblue-200': '#e6f8ff'
     },
     extend: {
       blur: {
