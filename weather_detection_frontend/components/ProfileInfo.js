@@ -16,6 +16,7 @@ function ProfileInfo() {
 
     const router = useRouter();
     const [userdetails, setuserDetails] = useState({});
+
     let item;
     useEffect(() => {
         item = sessionStorage.getItem('userid')
@@ -26,13 +27,59 @@ function ProfileInfo() {
 
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
+    // useEffect(() => {
+
+    //     axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
+    //         setuserDetails(res.data[0]);
+    //     })
+
+    // }, [])
+
+
+
+    // -----------fetch user data using graphql ---------------
+
+
+    var query = `query GetUser($item: ID) {
+        getUser(id: $item) {
+            address
+    birthday
+    city
+    country
+    email
+    gender
+    id
+    imageurl
+    phone
+    profession
+    state
+    userName
+    zip
+        }
+      }`
+
+
+    const endpoint = "http://localhost:4001/gql";
+
     useEffect(() => {
-
-        axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
-            setuserDetails(res.data[0]);
-        })
-
+        console.log(typeof (userid));
+        fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                query,
+                variables: { item },
+            })
+        }).then(res => res.json()).then(data => setuserDetails(data.data.getUser))
     }, [])
+
+
+
+
+
 
 
 

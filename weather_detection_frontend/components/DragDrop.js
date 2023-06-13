@@ -20,6 +20,7 @@ const Classify = () => {
   const [predictions, setPredictions] = useState(null);
   const [predictBtn, setPredictBtn] = useState(false);
   const [updatetBtn, setUpdateBtn] = useState(false);
+  const [mxName, setmxName] = useState('');
 
 
   const [showModal, setShowModal] = useState(false);
@@ -49,6 +50,9 @@ const Classify = () => {
     }
   }
 
+  let mx = 0;
+  let clsname;
+
   async function runmodel() {
     const url = "https://teachablemachine.withgoogle.com/models/IerQIOPqD/";
     const modelUrl = url + "model.json"
@@ -61,7 +65,18 @@ const Classify = () => {
     const prediction = await model.predict(img);
     setPredictions(prediction);
 
-    console.log(prediction);
+    for (const input of prediction) {
+      const name = input.className;
+      const value = input.probability;
+
+      if (value >= mx) {
+        clsname = name;
+        mx = value;
+      }
+    }
+    setmxName(clsname)
+
+    // console.log(mxName);
   }
 
   const handlePredict = () => {
@@ -169,7 +184,7 @@ const Classify = () => {
                     <div className="">
                       <div className="flex w-full mb-8 mt-4">
                         <div className="bg-blue-500 w-1/2 rounded-l-lg ml-2 py-3 pl-6 font-bold text-white">Predicted Class</div>
-                        <div className="bg-skyblue rounded-r-lg pl-4 py-3 w-1/2 mr-2 font-bold text-black">Lightning</div>
+                        <div className="bg-skyblue rounded-r-lg pl-4 py-3 w-1/2 mr-2 font-bold text-black">{mxName}</div>
                       </div>
                       <div className="">
 

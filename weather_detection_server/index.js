@@ -1,13 +1,24 @@
+
 const express = require('express')
+
 const cors = require('cors')
 const mongodb = require('mongodb')
 var bodyParser = require('body-parser')
+// var { graphqlHTTP } = require("express-graphql")
+// var { buildSchema } = require("graphql")
 
+const UserEV = require('./models/Query')
 
-
-const { MongoClient } = mongodb
 
 const app = express()
+
+
+const url = "mongodb+srv://weather_detection:weather_detection12345@cluster0.pz1hxyg.mongodb.net/Weather_Database?retryWrites=true&w=majority"
+
+
+// -----------------express connection -------------
+const { MongoClient } = mongodb
+
 
 app.use(cors())
 require('dotenv').config()
@@ -16,10 +27,56 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 
 const port = 4000
-const url = "mongodb+srv://weather_detection:weather_detection12345@cluster0.pz1hxyg.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const ObjectId = mongodb.ObjectId;
+
+
+
+
+
+// -------------mongoose ---------------
+const mongoose = require('mongoose')
+const { ApolloServer, gql } = require('apollo-server-express')
+
+
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers")
+
+
+
+
+async function startServer() {
+    const app = express()
+    const apolloServer = new ApolloServer({
+        typeDefs,
+        resolvers,
+    });
+
+    await apolloServer.start();
+
+    apolloServer.applyMiddleware({ app: app, path: '/gql' });
+
+    app.use((req, res) => {
+        res.send("Hello from gql")
+    })
+
+    const url = "mongodb+srv://weather_detection:weather_detection12345@cluster0.pz1hxyg.mongodb.net/Weather_Database?retryWrites=true&w=majority"
+
+    mongoose.connect(url)
+        .then(() => console.log("Database connected!"))
+        .catch(err => console.log(err))
+
+
+    app.listen(4001, () => console.log("Server is running on port 4001"));
+}
+
+startServer();
+
+
+
+
+
 
 async function server() {
     try {
@@ -35,8 +92,12 @@ async function server() {
         const ratingCollection = database.collection("ratings");
 
 
+
+
+
         app.get('/users', async (req, res) => {
             const result = await userCollection.find({}).toArray();
+
             res.json(result);
         })
         app.get("/userdata/:id", async (req, res) => {

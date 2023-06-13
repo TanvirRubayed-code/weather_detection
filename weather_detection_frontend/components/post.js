@@ -63,16 +63,15 @@ function Post({ title }) {
           grt = gRating.rating;
           ratingFlag = true;
         }
-        else {
-          ratingFlag = false;
-        }
+        ratingFlag = false;
       })
-    }
-    else {
-      addRating = false;
     }
 
   })
+
+  console.log(addRating);
+
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/single-post?posttitle=${title}`)
@@ -80,7 +79,7 @@ function Post({ title }) {
       .then(data => setFullPost(data[0]));
   }, [title])
 
-  let averageRate;
+  let averageRate = 0;
   averageRate = previousSum / ratingcount;
 
   const changeRating = (newRating) => {
@@ -108,11 +107,13 @@ function Post({ title }) {
         .then(res => console.log(res))
     }
     else if (ratingFlag || change || updater) {
+      console.log("update");
       axios.post('http://localhost:4000/update-previous-rating', rating)
         .then(res => console.log(res))
+
     }
 
-    else {
+    else if (!addRating) {
       setChange(true);
       axios.post(`http://localhost:4000/post-ratings`, rating)
         .then(res => console.log(res))
@@ -257,7 +258,7 @@ function Post({ title }) {
                 name='rating'
               />
             }
-            <h3 className="text-center py-4">Average ratings: {averageRate || 0}</h3>
+            <h3 className="text-center py-4">Average ratings: {averageRate.toFixed(1) >= 0 ? averageRate.toFixed(1) : 0}</h3>
           </div>
 
         </div>

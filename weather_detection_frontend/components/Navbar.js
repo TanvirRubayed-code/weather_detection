@@ -32,9 +32,10 @@ const Navigation = () => {
       setLoginState(true);
     }
 
-    axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
+    item != null && axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
       setNavpic(res.data[0].imageurl)
     })
+
 
 
   }, [])
