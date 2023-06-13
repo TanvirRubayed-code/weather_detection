@@ -14,6 +14,8 @@ import axios from "axios";
 
 function ProfileInfo() {
 
+    const [predictions, setPrediction] = useState(null);
+
     const router = useRouter();
     const [userdetails, setuserDetails] = useState({});
     let item;
@@ -34,7 +36,13 @@ function ProfileInfo() {
 
     }, [])
 
+    useEffect(() => {
+        axios.get(`http://localhost:4000/get-prediction/${item}`).then(res => {
 
+            setPrediction(res.data.length);
+
+        })
+    }, [])
 
     return (
         <div className="px-36 bg-gray-200 py-12 w-full">
@@ -181,7 +189,7 @@ function ProfileInfo() {
                                 <tr>
                                     <td className="py-6">Address </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8">{userdetails.address}</td>
+                                    <td className="pl-8">{userdetails.address + ", " + userdetails.city + ", " + userdetails.state + ", " + userdetails.country + ", " + userdetails.zip}</td>
                                 </tr>
                                 <tr>
                                     <td>E-mail </td>
@@ -233,13 +241,13 @@ function ProfileInfo() {
                                 <tr className="">
                                     <td className="">Toal image classification</td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">28</td>
+                                    <td className="pl-8 text-tahiti">{predictions}</td>
                                 </tr>
 
                                 <tr className="">
                                     <td className="py-6">Average confidence </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8">0.04342</td>
+                                    <td className="pl-8">0.7342</td>
                                 </tr>
                             </tbody>
 

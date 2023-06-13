@@ -34,6 +34,8 @@ async function server() {
 
         const ratingCollection = database.collection("ratings");
 
+        const predictionCollection = database.collection("predictions");
+
 
         app.get('/users', async (req, res) => {
             const result = await userCollection.find({}).toArray();
@@ -71,21 +73,6 @@ async function server() {
             const result = await cursor.toArray();
             res.json(result);
         });
-
-        // app.post("/get-userInfo/:id", async (req, res) => {
-        //     const id = req.params.id;
-        //     // console.log(id);
-        //     try {
-        //         const filter = {
-        //             _id: ObjectId(id)
-        //         };
-
-        //         const result = await userCollection.find(filter).toArray();
-        //         res.send(result);
-        //     } catch (e) {
-        //         console.log(e);
-        //     }
-        // });
 
 
 
@@ -242,6 +229,35 @@ async function server() {
             };
             console.log(doc);
             const result = await likeDislikeCollection.insertOne(doc);
+            res.json(result);
+        });
+
+
+
+        app.post("/post-prediction/:id", async (req, res) => {
+            const id = req.params.id;
+            const { lightening, snow, rainbow, drew, rain } = req.body;
+            const doc = {
+                userID: ObjectId(id),
+                "Lightning": lightening,
+                "Snow": snow,
+                "Rainbow": rainbow,
+                "Drew": drew,
+                "Rain": rain
+            };
+            const result = await predictionCollection.insertOne(doc);
+            res.json(result);
+        });
+
+        app.get("/get-prediction/:id", async (req, res) => {
+            const id = req.params.id;
+
+            const filter = {
+                userID: ObjectId(id)
+            };
+
+            const cursor = predictionCollection.find(filter);
+            const result = await cursor.toArray();
             res.json(result);
         });
 

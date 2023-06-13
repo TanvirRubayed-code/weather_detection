@@ -8,15 +8,69 @@ import ReactStars from "react-rating-stars-component";
 import styles from "../styles/Blog.module.css";
 import { FormControl, FormControlLabel, FormLabel, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup } from "@mui/material";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Router } from "next/router";
 
 
 function ProfileInfo() {
+
+    const router = useRouter();
 
     const [showPassword, setShowPassword] = useState(false);
     const [changeUerData, setChangeUserData] = useState({});
     const [userdetails, setuserDetails] = useState({});
     const [profilePhoto, setProfilePhoto] = useState("");
     const [uid, setUid] = useState("")
+
+    const [country, setCountry] = useState(null);
+    const [countryDB, setCountryDB] = useState(null);
+    const [state, setState] = useState(null);
+    const [stateDB, setStateDB] = useState(null);
+    const [district, setDistrict] = useState(null);
+    const [districtDB, setDistrictDB] = useState(null);
+
+    const [countryIdx, setcountryIdx] = useState(null);
+
+    const addressData = [
+        {
+            country: 'Bangladesh',
+            states: [
+                {
+                    state: 'Dhaka',
+                    district: ['Dhaka', 'Gazipur', 'Narsingdi', 'Manikganj', 'Munshiganj', 'Narayanganj', 'Mymensingh', 'Sherpur', 'Jamalpur', 'Netrokona', 'Kishoreganj', 'Tangail', 'Faridpur', 'Maradipur', 'Shariatpur', 'Rajbari', 'Gopalganj']
+                },
+                {
+                    state: 'Chattogram',
+                    district: ['Brahmanbaria ', 'Comilla', 'Chandpur', 'Lakshmipur', 'Noakhali', 'Feni', 'Khagrachhari', 'Rangamati', 'Bandarban', 'Chittagong', "Cox's Bazar"]
+                },
+                {
+                    state: 'Rajshahi',
+                    district: ['Joypurhat ', 'Naogaon', 'Nawabganj', 'Natore', 'Pabna', 'Bogra', 'Rajshahi', 'Sirajganj']
+                },
+                {
+                    state: 'Khulna',
+                    district: ['Bagherhat ', 'Chuadanga', 'Jessore', 'Jinaidaha', 'Khulna', 'Magura', 'Meherpur', 'Satkhira']
+                }
+
+            ]
+        },
+        {
+            country: 'India',
+            states: [
+                {
+                    state: 'Mumbai',
+                    district: ['Dhaka', 'Gazipur', 'Narsingdi', 'Manikganj', 'Munshiganj', 'Narayanganj', 'Mymensingh', 'Sherpur', 'Jamalpur', 'Netrokona', 'Kishoreganj', 'Tangail', 'Faridpur', 'Maradipur', 'Shariatpur', 'Rajbari', 'Gopalganj']
+                },
+                {
+                    state: 'Chennai',
+                    district: ['Brahmanbaria ', 'Comilla', 'Chandpur', 'Lakshmipur', 'Noakhali', 'Feni', 'Khagrachhari', 'Rangamati', 'Bandarban', 'Chittagong', "Cox's Bazar"]
+                }
+            ]
+        },
+    ]
+
+
 
     let item;
     useEffect(() => {
@@ -26,6 +80,50 @@ function ProfileInfo() {
         axios.get(`http://localhost:4000/userdata/${item}`).then(res => {
             setuserDetails(res.data[0]);
             setProfilePhoto(res.data[0].imageurl)
+
+            let i = 1;
+            for (const input of addressData) {
+                if (input.country == res.data[0].country) {
+                    setCountry(input)
+                    if (typeof document !== 'undefined') {
+                        var select = document.getElementById("countrySelect")
+                        select.selectedIndex = i;
+                    }
+
+                    let j = 1;
+
+                    for (const input2 of input.states) {
+                        if (input2.state == res.data[0].state) {
+                            // console.log(input2.state);
+                            setState(input2)
+
+                            if (typeof document !== 'undefined') {
+                                var select = document.getElementById("stateSelect")
+                                select.selectedIndex = j;
+                            }
+
+                            let k = 1;
+
+                            for (const input3 of input2.district) {
+                                if (input3 == res.data[0].city) {
+                                    console.log(input3);
+
+                                    if (typeof document !== 'undefined') {
+                                        var select = document.getElementById("districtSelect")
+                                        select.selectedIndex = k;
+                                    }
+                                }
+                                k++;
+                            }
+
+                        }
+                        j++;
+                    }
+
+                }
+                i++;
+            }
+
         })
 
     }, [])
@@ -50,7 +148,7 @@ function ProfileInfo() {
 
     }
 
-    let firstname, email, number, profession, gender, birthday, address, city, state, zip, country;
+    let firstname, email, number, profession, gender, birthday, address, city_old, state_old, zip, country_old;
     const handleFirstname = (e) => {
         firstname = e.target.value;
     }
@@ -74,17 +172,18 @@ function ProfileInfo() {
         address = e.target.value;
     }
     const handleCity = (e) => {
-        city = e.target.value;
+        city_old = e.target.value;
     }
     const handleState = (e) => {
-        state = e.target.value;
+        state_old = e.target.value;
     }
     const handleZip = (e) => {
         zip = e.target.value;
     }
     const handleCountry = (e) => {
-        country = e.target.value;
+        country_old = e.target.value;
     }
+
 
 
 
@@ -99,24 +198,32 @@ function ProfileInfo() {
             "gender": gender || userdetails.gender,
             "birthday": birthday || userdetails.birthday,
             "address": address || userdetails.address,
-            "city": city || userdetails.city,
-            "state": state || userdetails.state,
+            "city": districtDB || userdetails.city,
+            "state": stateDB || userdetails.state,
             "zip": zip || userdetails.zip,
-            "country": country || userdetails.country,
+            "country": countryDB || userdetails.country,
             "imageurl": profilePhoto || "",
 
         })
 
+
         if (changeUerData.uid) {
+
             axios.post(`http://localhost:4000/update-userinfo`, changeUerData)
                 .then(res => {
                     console.log(res);
+                    if (res.data) {
+                        router.push('/user')
+                    }
                 });
         }
 
-
-
     }
+
+    country && console.log(country['states']);
+
+
+
 
     var curr = new Date();
     curr.setDate(curr.getDate() + 3);
@@ -127,8 +234,6 @@ function ProfileInfo() {
 
     return (
         <div className="px-36 py-12 w-full bg-gray-200">
-
-
             <div className=" rounded-lg shadow-2xl bg-white">
                 <div className="py-6 px-10 text-3xl shadow">Edit Profile</div>
                 <div className=" flex flex-col items-center px-32 py-16">
@@ -195,12 +300,11 @@ function ProfileInfo() {
                                     onChange={handleGender}
 
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue={userdetails.gender}
                                     name="radio-buttons-group"
                                 >
-                                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                    <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                                    <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                                    <FormControlLabel value="Other" control={<Radio />} label="Other" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -217,10 +321,76 @@ function ProfileInfo() {
                                 <input onChange={handleAddress} defaultValue={userdetails.address} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
                             </div>
                         </div>
-                        <div className="flex mt-5">
+                        <div className="flex items-center justify-center content-center mt-5">
+
                             <div className="mr-5">
-                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">City</label>
-                                <input onChange={handleCity} defaultValue={userdetails.city} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
+                                <select
+                                    id="countrySelect"
+                                    onChange={e => {
+                                        setCountry(addressData[e.target.selectedIndex - 1])
+                                        setCountryDB(addressData[e.target.selectedIndex - 1].country);
+                                        setState(null)
+                                        setDistrict(null)
+
+                                    }}>
+                                    <option>Country</option>
+                                    {
+                                        addressData.map(allCountry =>
+                                            <option value={allCountry.country} >{allCountry.country}</option>
+                                        )
+                                    }
+                                </select>
+                            </div>
+                            <div className="ml-0">
+
+                                <select
+                                    id="stateSelect"
+                                    onChange={e => {
+                                        country && setState(country.states[e.target.selectedIndex - 1])
+                                        setStateDB(country.states[e.target.selectedIndex - 1].state);
+                                        setDistrict(null)
+                                    }} >
+                                    <option>State</option>
+                                    {
+                                        country && country['states'].map(allState =>
+                                            <option value={allState.state}>{allState.state}</option>)
+                                    }
+                                </select>
+
+                            </div>
+
+
+                            <div className="mr-5 ml-5">
+                                {
+                                    <select
+                                        id="districtSelect"
+                                        onChange={e => {
+                                            state && setDistrict(state.district[e.target.selectedIndex - 1])
+                                            setDistrictDB(state.district[e.target.selectedIndex - 1]);
+                                        }}>
+                                        <option>District</option>
+                                        {
+                                            state && state['district'].map(allDistrict =>
+                                                <option value={allDistrict} >{allDistrict}</option>)
+                                        }
+                                    </select>
+                                }
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div className=" mt-5">
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Zip code</label>
+                                <input onChange={handleZip} defaultValue={userdetails.zip} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
+                            </div>
+                        </div>
+
+                        {/* <div className="flex mt-5">
+
+                            <div className="mr-5">
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Country</label>
+                                <input onChange={handleCountry} defaultValue={userdetails.country} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
                             </div>
                             <div className="ml-5">
                                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">State</label>
@@ -229,14 +399,15 @@ function ProfileInfo() {
                         </div>
                         <div className="flex mt-5">
                             <div className="mr-5">
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">City</label>
+                                <input onChange={handleCity} defaultValue={userdetails.city} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
+                            </div>
+                            <div className="ml-5">
                                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Zip code</label>
                                 <input onChange={handleZip} defaultValue={userdetails.zip} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
                             </div>
-                            <div className="ml-5">
-                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Country</label>
-                                <input onChange={handleCountry} defaultValue={userdetails.country} type="text" id="first_name" class=" border-2 w-full text-gray-800 h-10 rounded pl-8 bg-white border-blue-300 outline-none transition focus:border-blue-500" required />
-                            </div>
-                        </div>
+                        </div> */}
+
 
 
                         {/* <div className=" flex justify-between mt-5">
