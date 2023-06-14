@@ -90,8 +90,36 @@ async function server() {
         const commentCollection = database.collection("comments");
 
         const ratingCollection = database.collection("ratings");
+        const predictionCollection = database.collection("predictions");
 
+        // ------------------- get prediction database ------------
 
+        app.post("/post-prediction/:id", async (req, res) => {
+            const id = req.params.id;
+            const { lightening, snow, rainbow, drew, rain } = req.body;
+            const doc = {
+                userID: ObjectId(id),
+                "Lightning": lightening,
+                "Snow": snow,
+                "Rainbow": rainbow,
+                "Drew": drew,
+                "Rain": rain
+            };
+            const result = await predictionCollection.insertOne(doc);
+            res.json(result);
+        });
+
+        app.get("/get-prediction/:id", async (req, res) => {
+            const id = req.params.id;
+
+            const filter = {
+                userID: ObjectId(id)
+            };
+
+            const cursor = predictionCollection.find(filter);
+            const result = await cursor.toArray();
+            res.json(result);
+        });
 
 
 

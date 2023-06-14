@@ -7,6 +7,9 @@ import style from '../styles/classify.module.css'
 import * as tmImage from '@teachablemachine/image'
 import fileimage from "../image/archive.png"
 import Image from "next/image";
+import axios from "axios";
+
+
 
 const Classify = () => {
 
@@ -14,6 +17,15 @@ const Classify = () => {
   const [previewshow, setPreviewshow] = useState(false)
   const [file, setFile] = useState(null);
   const [imageurl, setImageURl] = useState("");
+  const [userID, setUserID] = useState("");
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    setUserID(sessionStorage.getItem("userid"));
+    setUserName(sessionStorage.getItem("userid"));
+  }, [])
+
+
 
   let model;
   const [puppy, setPuppy] = useState(null)
@@ -77,6 +89,28 @@ const Classify = () => {
     setmxName(clsname)
 
     // console.log(mxName);
+
+    const lightening = prediction[0].probability;
+    const snow = prediction[1].probability;
+    const rainbow = prediction[2].probability;
+    const drew = prediction[3].probability;
+    const rain = prediction[4].probability;
+
+    let data = { lightening, snow, rainbow, drew, rain }
+
+    console.log(data);
+
+    axios.post(`http://localhost:4000/post-prediction/${userID}`, data)
+      .then(res => {
+        if (res.data?.insertedId) {
+          console.log(res.data);
+        }
+        else {
+          alert("failed")
+        }
+      })
+
+
   }
 
   const handlePredict = () => {

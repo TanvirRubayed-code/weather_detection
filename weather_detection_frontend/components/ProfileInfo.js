@@ -16,6 +16,8 @@ function ProfileInfo() {
 
     const router = useRouter();
     const [userdetails, setuserDetails] = useState({});
+    const [predictions, setPrediction] = useState(null);
+
 
     let item;
     useEffect(() => {
@@ -24,6 +26,16 @@ function ProfileInfo() {
             router.push('/')
         }
     }, [])
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:4000/get-prediction/${item}`).then(res => {
+
+            setPrediction(res.data.length);
+
+        })
+    }, [])
+
 
     const [ratingvlaue, setRatingValue] = useState(3.7);
 
@@ -280,14 +292,10 @@ function ProfileInfo() {
                                 <tr className="">
                                     <td className="">Toal image classification</td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8 text-tahiti">28</td>
+                                    <td className="pl-8 text-tahiti">{predictions}</td>
                                 </tr>
 
-                                <tr className="">
-                                    <td className="py-6">Average confidence </td>
-                                    <td className="pl-4">: </td>
-                                    <td className="pl-8">0.04342</td>
-                                </tr>
+
                             </tbody>
 
                         </table>
