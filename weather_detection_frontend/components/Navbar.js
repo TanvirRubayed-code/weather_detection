@@ -137,11 +137,20 @@ const Navigation = () => {
 
 
 
-
-
-
-
                 <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
+                  <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/weather">
+                    {
+                      router.pathname == "/weather" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
+                        Forecast
+                      </div> : <div className=" border-b-4 border-b-transparent py-7 px-2">Forecast</div>
+                    }
+                  </Link>
+
+                </li>
+
+
+
+                {/* <li className="flex flex-col items-center justify-center px-4 h-20 border-b-4 border-b-transparent">
                   <Link class="block  text-white text-base bg-blue-700 rounded  md:bg-transparent md: md:p-0 dark:text-white" href="/dropdown">
                     {
                       router.pathname == "/dropdown" ? <div className=" border-b-4 border-b-yellow-400 py-7 px-2">
@@ -150,7 +159,7 @@ const Navigation = () => {
                     }
                   </Link>
 
-                </li>
+                </li> */}
 
 
                 <li className="flex flex-col items-center justify-center mr-4 px-4 h-20 border-b-4 border-b-transparent">

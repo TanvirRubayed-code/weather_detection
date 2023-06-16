@@ -8,9 +8,12 @@ import ReactStars from "react-rating-stars-component";
 import styles from "../styles/Blog.module.css";
 import { FormControl, FormControlLabel, FormLabel, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 
 function ProfileInfo() {
+
+    const router = useRouter();
 
     const [showPassword, setShowPassword] = useState(false);
     const [changeUerData, setChangeUserData] = useState({});
@@ -207,6 +210,9 @@ function ProfileInfo() {
                 .then(res => {
                     showSpinner(false);
                     console.log(res);
+                    if (res.data) {
+                        router.push('/user')
+                    }
                 });
         }
 

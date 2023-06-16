@@ -5,7 +5,7 @@ import sun_rain from "../image/weather_rain_sun.png";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
 
 
@@ -40,6 +40,7 @@ const Banner = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setTemperature(data.current_weather.temperature);
       });
   }, [latitude]);
@@ -52,20 +53,22 @@ const Banner = () => {
       <div className={styles.banner}>
         <div className={styles.background_wrapper}>
           <div className={styles.text}>
-            <h5>Based on machine learning and AI classify weather condition</h5>
-            <h1>Predict Weather Condition</h1>
+            {/* <h5>Based on machine learning and AI classify weather condition</h5> */}
+            <h1 className="text-7xl">Weather Detection</h1>
             <p>
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-              Exercitation veniam consequat sunt nostrud amet.
+              Experience weather forecasting like never before with our cutting-edge ML-based web application. Real-time updates, precise forecasts, and stunning visuals in one seamless experience.
             </p>
 
 
+
+
             {
-              loggedIn == true ? <Link className={styles.btnStyle} href="/classify">
+              loggedIn == true ? <Link href="/classify" type="button" class="text-blue-600 transition duration-300 bg-white hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-full text-base px-5 py-2.5 text-center inline-flex items-center">
                 Predict Weather
-              </Link> : <Link className={styles.btnStyle} href="/login">
+                <BsFillArrowRightCircleFill className="ml-2  transition duration-300" size={25} />
+              </Link> : <Link href="/login" type="button" class="text-blue-600 transition duration-300 bg-white hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-full text-base px-5 py-2.5 text-center inline-flex items-center">
                 Predict Weather
+                <BsFillArrowRightCircleFill className="ml-2  transition duration-300" size={25} />
               </Link>
             }
 

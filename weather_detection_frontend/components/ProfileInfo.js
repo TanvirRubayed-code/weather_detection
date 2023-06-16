@@ -240,8 +240,7 @@ function ProfileInfo() {
                                 <tr>
                                     <td className="py-6">Address </td>
                                     <td className="pl-4">: </td>
-                                    <td className="pl-8">{userdetails.address}</td>
-                                </tr>
+                                    <td className="pl-8">{userdetails.address + ", " + userdetails.city + ", " + userdetails.country + ", " + userdetails.zip}</td>                                </tr>
                                 <tr>
                                     <td>E-mail </td>
                                     <td className="pl-4">: </td>

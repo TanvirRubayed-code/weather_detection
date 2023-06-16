@@ -128,7 +128,7 @@ const Classify = () => {
   return (
     <>
 
-      <div className="bg-gray-200 py-32 flex items-center justify-center content-center">
+      <div className="bg-gray-100 py-32 flex items-center justify-center content-center">
 
         <div className="flex w-1/2 p-6 bg-white border border-gray-200 rounded-2xl shadow-xl dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex flex-col items-center justify-center w-full h-80 border-2 border-blue-500 border-dashed transition-all rounded-lg cursor-pointer bg-gray-50 hover:border-solid dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -185,9 +185,15 @@ const Classify = () => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl px-40 font-semibold">
-                    Result
-                  </h3>
+                  {
+                    predictions == null ? <h3 className="text-3xl px-40 font-semibold">
+                      Predicting...
+                    </h3>
+                      :
+                      <h3 className="text-3xl px-40 font-semibold">
+                        Result
+                      </h3>
+                  }
                   {
                     predictions != null &&
                     <button
