@@ -132,9 +132,9 @@ function ProfileInfo() {
                                 <h3>1</h3>
                             </div>
                             <div className="text-sm pl-4">
-                                <h2 className=" hover:underline cursor-pointer"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+                                <h2 className=" hover:underline cursor-pointer">Unveiling the Science Behind Nature's Most Spectacular Phenomena</h2>
                                 <div>
-                                    <small>Food</small>
+                                    <small>Weather</small>
                                     <small className={styles.caterogy_small}>-</small>
                                     <small>NOV 17, 2022</small>
                                 </div>
@@ -146,9 +146,9 @@ function ProfileInfo() {
                                 <h3>2</h3>
                             </div>
                             <div className="text-sm pl-4">
-                                <h2 className=" hover:underline cursor-pointer"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+                                <h2 className=" hover:underline cursor-pointer">Weather Forecasting 101: Understanding the Basics of Meteorology</h2>
                                 <div>
-                                    <small>Food</small>
+                                    <small>Weather</small>
                                     <small className={styles.caterogy_small}>-</small>
                                     <small>NOV 17, 2022</small>
                                 </div>
@@ -160,9 +160,9 @@ function ProfileInfo() {
                                 <h3>3</h3>
                             </div>
                             <div className="text-sm pl-4">
-                                <h2 className=" hover:underline cursor-pointer">Aenean mattisg tortor ac sapen congue molestie.</h2>
+                                <h2 className=" hover:underline cursor-pointer">Chasing Storms: Tales from the Adventures of a Weather Enthusiast</h2>
                                 <div>
-                                    <small>Food</small>
+                                    <small>Weather</small>
                                     <small className={styles.caterogy_small}>-</small>
                                     <small>NOV 17, 2022</small>
                                 </div>
@@ -174,9 +174,9 @@ function ProfileInfo() {
                                 <h3>4</h3>
                             </div>
                             <div className="text-sm pl-4">
-                                <h2 className=" hover:underline cursor-pointer">Aenean mattisg tortor ac sapen congue molestie.</h2>
+                                <h2 className=" hover:underline cursor-pointer">Examining the Impact of Global Warming on Weather Patterns</h2>
                                 <div>
-                                    <small>Food</small>
+                                    <small>Weather</small>
                                     <small className={styles.caterogy_small}>-</small>
                                     <small>NOV 17, 2022</small>
                                 </div>
@@ -188,9 +188,9 @@ function ProfileInfo() {
                                 <h3>5</h3>
                             </div>
                             <div className="text-sm pl-4">
-                                <h2 className=" hover:underline cursor-pointer"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+                                <h2 className=" hover:underline cursor-pointer"> Tips and Tricks for Navigating Different Weather Conditions</h2>
                                 <div>
-                                    <small>Food</small>
+                                    <small>Weather</small>
                                     <small className={styles.caterogy_small}>-</small>
                                     <small>NOV 17, 2022</small>
                                 </div>

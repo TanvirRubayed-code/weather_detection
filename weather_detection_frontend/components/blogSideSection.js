@@ -28,7 +28,7 @@ function blogSideSection() {
             <h3 className="text-5xl bg-gray-100 h-full w-14 flex border border-gray-400 rounded items-center justify-center">1</h3>
 
             <div className="pl-2 h-full flex flex-col justify-center hover:cursor-pointer hover:bg-gray-200">
-              <h2 className="text-sm"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+              <h2 className="text-sm"> Weather Wonders: Unveiling the Science Behind Nature's Most Spectacular Phenomena</h2>
               <div>
                 <small>Food</small>
                 <small className={styles.caterogy_small}>-</small>
@@ -40,7 +40,7 @@ function blogSideSection() {
             <h3 className="text-5xl bg-gray-100 h-full w-14 flex border border-gray-400 rounded items-center justify-center">2</h3>
 
             <div className="pl-2 h-full flex flex-col justify-center hover:cursor-pointer hover:bg-gray-200">
-              <h2 className="text-sm"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+              <h2 className="text-sm">Weather Forecasting 101: Understanding the Basics of Meteorology</h2>
               <div>
                 <small>Food</small>
                 <small className={styles.caterogy_small}>-</small>
@@ -52,7 +52,7 @@ function blogSideSection() {
             <h3 className="text-5xl bg-gray-100 h-full w-14 flex border border-gray-400 rounded items-center justify-center">3</h3>
 
             <div className="pl-2 h-full flex flex-col justify-center hover:cursor-pointer hover:bg-gray-200">
-              <h2 className="text-sm"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+              <h2 className="text-sm">Chasing Storms: Tales from the Adventures of a Weather Enthusiast</h2>
               <div>
                 <small>Food</small>
                 <small className={styles.caterogy_small}>-</small>
@@ -64,7 +64,7 @@ function blogSideSection() {
             <h3 className="text-5xl bg-gray-100 h-full w-14 flex border border-gray-400 rounded items-center justify-center">4</h3>
 
             <div className="pl-2 h-full flex flex-col justify-center hover:cursor-pointer hover:bg-gray-200">
-              <h2 className="text-sm"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+              <h2 className="text-sm"> Climate Change Chronicles: Examining the Impact of Global Warming on Weather Patterns</h2>
               <div>
                 <small>Food</small>
                 <small className={styles.caterogy_small}>-</small>
@@ -78,7 +78,7 @@ function blogSideSection() {
             <h3 className="text-5xl bg-gray-100 h-full w-14 flex border border-gray-400 rounded items-center justify-center">5</h3>
 
             <div className="pl-2 h-full flex flex-col justify-center hover:cursor-pointer hover:bg-gray-200">
-              <h2 className="text-sm"> Aenean mattisg tortor ac sapen congue molestie.</h2>
+              <h2 className="text-sm">Weatherproof Your Life: Tips and Tricks for Navigating Different Weather Conditions</h2>
               <div>
                 <small>Food</small>
                 <small className={styles.caterogy_small}>-</small>
